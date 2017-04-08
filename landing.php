@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
 </head>
+
 <body>
         <?php $uname = $_POST['username'];
             $password = $_POST['password'];
@@ -15,6 +16,7 @@
         }
         $query = "SELECT * FROM users WHERE userID='".$uname."' and password='".$password."'";
         $res = mysqli_query($servcon,$query);
+
 
             $uiddd = "";
             $currentuser = "";
