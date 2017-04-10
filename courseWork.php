@@ -12,7 +12,7 @@
 <body class="container-fluid">
 <div class="row">
     <span class="glyphicon glyphicon-user col-md-4 col-md-offset-5" aria-hidden="true" ></span>
-    <div class="col-md-4 col-md-offset-3">
+    <div class="col-md-4 col-md-offset-2">
         <h3 align="center">Peer Assessment & Feedback</h3>
 
         <form class="form-horizontal">
@@ -20,7 +20,6 @@
                 <legend>Coursework Details</legend>
 
                 <div class="container">
-                    <form>
                         <div class="form-group row">
                             <label for="inputTitle" class="col-md-8 col-form-label">Title: Coursework 1</label>
                             </div>
@@ -31,37 +30,12 @@
                             <label for="subm" class="col-md-8 col-form-label">Submission Deadline: 21/04/2017</label>
                         </div>
                         <div class="form-group row">
-                            <label for="group" class="col-md-2 col-form-label">Coursework Grouping:</label>
-
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Group 1</th>
-                                    <th>Group 2</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>ST000001</td>
-                                    <td>ST000002</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>ST000003</td>
-                                    <td>ST000004</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>ST000005</td>
-                                    <td>ST000006</td>
-                                </tr>
-                                </tbody>
-                            </table>
-
+                            <label for="group" class="col-md-6 col-form-label">Coursework Grouping<ul class="list-group">
+                                    <li class="list-group-item">Group 1: ST000001, ST000003, ST00005</li>
+                                    <li class="list-group-item">Group 2: ST000002, ST000004, ST00006</li>
+                                    <li class="list-group-item">Group 3: ST000007, ST000008, ST00009</li>
+                                </ul></label>
                         </div>
-                    </form>
             </fieldset>
         </form>
 
@@ -71,7 +45,7 @@
                 <div class="form-group">
                     <label for="feedback">Student Feedback:</label>
 
-                    <textarea class="form-control" rows="5" placeholder="Please enter your feedback here Remember to set word limit later!."></textarea>
+                    <textarea class="form-control" rows="5" placeholder="Please enter your feedback here. Remember to set word limit later!"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="group">Supporting Document:</label>
@@ -89,12 +63,7 @@
                 </div>
             </fieldset>
         </form>
-        <span>To setup or edit coursework, click <a href="admin.html">here.</a></span>
-
     </div>
-
-</div>
-<div class="row">
 </div>
 </body>
 
