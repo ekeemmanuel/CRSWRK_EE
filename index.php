@@ -1,5 +1,38 @@
 <?php
 include ("connection.php");
+if (!isset($_SESSION['userSession'])) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $uname = $_POST['username'];
+        $password = $_POST['password'];
+
+        if (empty($_POST['username']) || empty($_POST['password'])) {
+            echo "Username and password are  mandatory!";
+
+        } else {
+
+
+            $query = "SELECT * FROM users WHERE userID='" . $uname . "' and password='" . $password . "'";
+            $res = mysqli_query($servcon, $query);
+
+            $uiddd = "";
+            $currentuser = "";
+            if (mysqli_num_rows($res) != 1) {
+
+                echo "username or password incorrect!";
+            } else {
+                session_start();
+
+                $reser = mysqli_fetch_array($res);
+                $uiddd = $reser[0];
+                $currentuser = $reser[1];
+
+                $_SESSION['firstName'] = $currentuser;
+                header('location:landing.php');
+            }
+        }
+    }
+}
+else {header('location:landing.php');}
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +54,7 @@ include ("connection.php");
     <div class="col-md-4 col-md-offset-3">
             <h3 align="center">Login</h3>
         <span style="display: none" id="hide">Account created successfully, Please Sign in</span>
-        <form class="form-horizontal"  action="landing.php" method ="post">
+        <form class="form-horizontal"  action="index.php" method ="POST">
                 <div class="form-group">
                     <input name="username"   class="col-md-12 form-control" type="text" placeholder="Username" />
                 </div>

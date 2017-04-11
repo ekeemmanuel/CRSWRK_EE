@@ -1,53 +1,25 @@
 <?php
-session_start();
 include("connection.php");
+session_start();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Dashboard</title>
 </head>
 
 <body class="container-fluid">
 <?php
-
-if (!isset($_SESSION['userSession'])) {
-
-
-    $uname = $_POST['username'];
-    $password = $_POST['password'];
-    // $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    if (empty($_POST['username']) || empty($_POST['password'])) {
-        echo "Username and password are  mandatory";
-    }
-    $query = "SELECT * FROM users WHERE userID='" . $uname . "' and password='" . $password . "'";
-    $res = mysqli_query($servcon, $query);
-
-
-    $uiddd = "";
-    $currentuser = "";
-    if (mysqli_num_rows($res) != 1) {
-        header("location: index.html");
-        echo "username or password incorrect";
-
-    } else {
-        $reser = mysqli_fetch_array($res);
-        $uiddd = $reser[0];
-        $currentuser = $reser[1];
-        echo "<h4>" . "Hello  " . "{$currentuser}" . "<h4>";
-
-        $_SESSION['userSession'] = $currentuser;
-
-    }
-
-
-}
+            echo "<h4>" . "Hello  " . "{$_SESSION['firstName']}" . "<h4>";
 
 ?>
 
-<? $que = "SELECT * FROM courses WHERE courseCode IN (SELECT courseCode FROM users_module WHERE user_Id = $uiddd)";
+<!--
+$que = "SELECT * FROM courses WHERE courseCode IN (SELECT courseCode FROM users_module WHERE user_Id = $uiddd)";
 $selected = mysqli_query($servcon, $que);
 $ans = mysqli_num_rows($selected);
 while ($ans > 0) {
@@ -58,9 +30,7 @@ while ($ans > 0) {
 
 
 }
-
-?>
-
+-->
 
 <div class="row">
     <span class="glyphicon glyphicon-list col-md-4 col-md-offset-5" aria-hidden="true"></span>
@@ -69,47 +39,47 @@ while ($ans > 0) {
 
         <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading"><a href="#" class="list-group-item active">CMM OO7</a></div>
+            <div class="panel-heading"><class="list-group-item active">CMM OO7</a></div>
             <div class="list-group">
-                <a href="#" class="list-group-item">Coursework 1</a>
-                <a href="#" class="list-group-item">Coursework 2</a>
-                <a href="#" class="list-group-item">Coursework 3</a>
+                <a href="courseWork.php" class="list-group-item">Coursework 1</a>
+                <a href="courseWork.php" class="list-group-item">Coursework 2</a>
+                <a href="courseWork.php" class="list-group-item">Coursework 3</a>
             </div>
         </div>
 
         <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading"><a href="#" class="list-group-item active">CMM OO8</a></div>
+            <div class="panel-heading"><class="list-group-item active">CMM OO8</a></div>
             <div class="list-group">
-                <a href="#" class="list-group-item">Coursework 1</a>
-                <a href="#" class="list-group-item">Coursework 2</a>
-                <a href="#" class="list-group-item">Coursework 3</a>
+                <a href="courseWork.php" class="list-group-item">Coursework 1</a>
+                <a href="courseWork.php" class="list-group-item">Coursework 2</a>
+                <a href="courseWork.php" class="list-group-item">Coursework 3</a>
             </div>
         </div>
 
         <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading"><a href="#" class="list-group-item active">CMM O21</a></div>
+            <div class="panel-heading"><class="list-group-item active">CMM O21</a></div>
             <div class="list-group">
-                <a href="#" class="list-group-item">Coursework 1</a>
-                <a href="#" class="list-group-item">Coursework 2</a>
-                <a href="#" class="list-group-item">Coursework 3</a>
+                <a href="courseWork.php" class="list-group-item">Coursework 1</a>
+                <a href="courseWork.php" class="list-group-item">Coursework 2</a>
+                <a href="courseWork.php" class="list-group-item">Coursework 3</a>
             </div>
         </div>
 
         <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading"><a href="#" class="list-group-item active">CMM 501</a></div>
+            <div class="panel-heading"><aclass="list-group-item active">CMM 501</a></div>
             <div class="list-group">
-                <a href="#" class="list-group-item">Coursework 1</a>
-                <a href="#" class="list-group-item">Coursework 2</a>
-                <a href="#" class="list-group-item">Coursework 3</a>
+                <a href="courseWork.php" class="list-group-item">Coursework 1</a>
+                <a href="courseWork.php" class="list-group-item">Coursework 2</a>
+                <a href="courseWork.php" class="list-group-item">Coursework 3</a>
             </div>
         </div>
     </div>
 </div>
 
-<footer>To setup or edit coursework, click <a href="admin.html">here.</a></footer>
+<footer>To setup or edit coursework, click <a href="admin.php">here.</a></footer>
 
 </body>
 </html>

@@ -67,6 +67,7 @@
 </div>
 </body>
 
-<span>To setup or edit coursework, click <a href="admin.html">here.</a></span>
+<span>Return to main <a href="landing.php">page</a><br></span>
+<span>To setup or edit coursework, click <a href="admin.php">here.</a></span>
 
 </html>
