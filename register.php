@@ -74,7 +74,7 @@
             </div>
 
         </form>
-        <span>Already have an account? <a href="index.html">Login</a></span>
+        <span>Already have an account? <a href="index.php">Login</a></span>
 
     </div>
 

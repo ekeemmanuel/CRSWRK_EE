@@ -59,6 +59,6 @@
 </div>
 </body>
 
-<span>To setup or edit coursework, click <a href="admin.html">here.</a></span>
+<span>To setup or edit coursework, click <a href="admin.php">here.</a></span>
 
 </html>

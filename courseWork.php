@@ -1,4 +1,9 @@
 <?php
+include("connection.php");
+session_start();
+
+$title = $_GET['t'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +14,7 @@
     <title>Peer Assessment</title>
 </head>
 
-<body class="container-fluid">
+<body class="container-fluid" onload="hider()">
 <div class="row">
     <span class="glyphicon glyphicon-user col-md-4 col-md-offset-5" aria-hidden="true" ></span>
     <div class="col-md-4 col-md-offset-2">
@@ -21,25 +26,59 @@
 
                 <div class="container">
                         <div class="form-group row">
-                            <label for="inputTitle" class="col-md-8 col-form-label">Title: Coursework 1</label>
+                            <label for="inputTitle" class="col-md-8 col-form-label">Title: <?php echo $title?></label>
                             </div>
+                    <?php $sqd3="SELECT * FROM assignment WHERE title ='{$_GET['t']}' ";
+                            $res1=null;
+                           $q4 = mysqli_query($servcon, $sqd3);
+                            if(mysqli_num_rows($q4)==1){
+                                $res1 =  mysqli_fetch_assoc($q4);
+
+
+                            }
+
+                    ?>
                         <div class="form-group row">
-                            <label for="descr" class="col-md-8 col-form-label">Description: Desfvbnmsdmnambckjbjdajvmvvaad</label>
+                            <label for="descr" class="col-md-8 col-form-label">Description: <?php echo $res1['description']?></label>
                         </div>
                         <div class="form-group row">
-                            <label for="subm" class="col-md-8 col-form-label">Submission Deadline: 21/04/2017</label>
+                            <label for="subm" class="col-md-8 col-form-label">Submission Deadline:  <?php echo $res1['submissionDate']?></label>
                         </div>
-                        <div class="form-group row">
-                            <label for="group" class="col-md-6 col-form-label">Coursework Grouping<ul class="list-group">
-                                    <li class="list-group-item">Group 1: ST000001, ST000003, ST00005</li>
-                                    <li class="list-group-item">Group 2: ST000002, ST000004, ST00006</li>
-                                    <li class="list-group-item">Group 3: ST000007, ST000008, ST00009</li>
+                    <div class="form-group row">
+                        <label for="group" class="col-md-6 col-form-label">Coursework Grouping
+                            <ul class="list-group">
+                    <?php $sqd4 = "SELECT * FROM groups WHERE Ass_Id='{$res1['A_id']}'";
+                               $q5= mysqli_query($servcon, $sqd4);
+
+                                    while($rowa=mysqli_fetch_assoc($q5)){
+                                        echo "<li class='list-group-item'> {$rowa['group_name']}: ";
+
+                                        $sqd6 = "SELECT userID FROM users_group WHERE group_ID='{$rowa['id']}'";
+                                        $q6= mysqli_query($servcon, $sqd6);
+                                        echo "<ul>";
+                                        while($rowi=mysqli_fetch_assoc($q6)){
+                                            echo "<li class='list-group-item' > {$rowi['userID']}</li>";
+
+                                        }
+                                        echo "</ul></li>";
+
+
+
+
+                                }
+
+                    ?>
+
+
+
+                                <!--    <li class="list-group-item">Group 2: ST000002, ST000004, ST00006</li>
+                                    <li class="list-group-item">Group 3: ST000007, ST000008, ST00009</li> -->
                                 </ul></label>
                         </div>
             </fieldset>
         </form>
 
-        <form class="form-horizontal">
+        <form class="form-horizontal" enctype="multipart/form-data">
             <fieldset>
                 <legend>Feedback Details</legend>
                 <div class="form-group">
@@ -51,23 +90,30 @@
                     <label for="group">Supporting Document:</label>
                     <input name="docs" class="col-md-12 form-control" type="file" placeholder="Upload Supporting Document" />
                 </div>
-            </fieldset>
-        </form>
-
-        <form class="form-horizontal">
-            <fieldset>
-                <legend>Complete Feedback Submission</legend>
                 <div class="form-group">
-                    <span class="glyphicon glyphicon-floppy-open col-md-1 col-md-offset-7" aria-hidden="true" ></span>
-                    <input type="submit" class="col-md-4 btn btn-primary"  value="Submit"/>
-                </div>
+                    <span class="glyphicon glyphicon-floppy-open col-md-1 col-md-offset-4" aria-hidden="true" ></span>
+                    <input type="submit" class="col-md-3 btn btn-primary"  value="Submit"/>
+                    <input  type="button" class="col-md-3 col-md-offset-1 btn" onclick="location.href='landing.php'" value="Cancel"/>
+                   </div>
             </fieldset>
         </form>
     </div>
 </div>
+
+<div id="hide">
+<span>To setup or edit coursework, click <a href="admin.php">here.</a></span>
+</div>
+<script>
+    function hider(){
+
+            document.getElementById("hide").style.display="none";
+
+    }
+</script>
 </body>
 
-<span>Return to main <a href="landing.php">page</a><br></span>
-<span>To setup or edit coursework, click <a href="admin.php">here.</a></span>
+
+
+
 
 </html>

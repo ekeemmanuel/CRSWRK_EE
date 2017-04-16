@@ -1,5 +1,6 @@
 <?php
-
+include("connection.php");
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,59 +17,81 @@
         <h3 align="center">Administrator</h3>
 
 
-        <p>CMMOO7: INTRANET SYSTEMS DEVELOPMENT</p>
-        <form class="form-horizontal">
-            <fieldset>
-                <legend>Coursework Setup||<a href="view.php">Submitted Feedbacks</a> </legend>
+                <legend>Coursework Setup||<a href="admin2.php">Submitted Feedbacks</a> </legend>
+                <form class="form-horizontal" method="get">
+            <?php $sqd7 = "SELECT courseCode, courseName FROM `courses`";
+                   $q6= mysqli_query($servcon, $sqd7);
+                   echo "  <select class='col-md-12 form-control' name='course'>";
+                   while ($rown=mysqli_fetch_assoc($q6)){
+                       echo "<option value='{$rown['courseName']}'>{$rown['courseCode']}".":"."{$rown['courseName']}"."</option>";
+                   }
+                    echo " </select>";
+
+
+            ?>
+
                 <div class="form-group">
                     <label for="crsttle">Coursework Title:</label>
                     <input name="crsttle"   class="col-md-12 form-control" type="text" placeholder="Enter Coursework Title" />
                 </div>
                 <div class="form-group">
                     <label for="crswrk">Coursework Description:</label>
-                    <input name="crswrk"   class="col-md-12 form-control" type="file" placeholder="Select Document" />
+                    <textarea name="crswrk"   class="col-md-12 form-control" rows="5" cols="25" placeholder="Describe The Coursework" ></textarea>
                 </div>
                 <div class="form-group">
                     <label for="deadline">Submission Deadline:</label>
                     <input name="deadline" class="col-md-12 form-control" type="date" placeholder=""/>
                 </div>
-            </fieldset>
-        </form>
 
 
-        <form class="form-horizontal">
-            <fieldset>
-                <legend>Peer Group Setup</legend>
+                    <h4>Peer Group Setup</h4><hr/>
+                    <div class="form-group">
+                        <select class='col-md-12 form-control'  name="grp">
+                    <?php $sqd8 = "SELECT group_name FROM groups";
+                        $q8=mysqli_query($servcon, $sqd8);
+
+                        while ($rowd = mysqli_fetch_assoc($q8)){
+                            echo "<option class='list-group-item' value='{$rowd['group_name']}'>{$rowd['group_name']}</option>";
+
+                        }
+
+
+                    ?>
+
+                        </select>
+                    </div>
+
                 <div class="form-group">
-                    <label for="crsttle">General Description:</label>
-                    <input name="crsttle"   class="col-md-12 form-control" type="text" placeholder="Describe the grouping"/>
-                </div>
-                <div class="form-group">
-                    <label for="group">Peer Group Allocation:</label>
-                    <ul class="list-group">
-                        <li class="list-group-item">Group 1: ST000001, ST000003, ST00005</li>
-                        <li class="list-group-item">Group 2: ST000002, ST000004, ST00006</li>
-                        <li class="list-group-item">Group 3: ST000007, ST000008, ST00009</li>
-                    </ul>
-                </div>
-            </fieldset>
-        </form>
+                    <select class='col-md-12 form-control' multiple  name="std">
+                    <?php
+                        $ss = "student";
+                        $sqd9 = "SELECT userID FROM users WHERE role = '{$ss}'";
+                        $q9= mysqli_query($servcon, $sqd9);
+                   print_r(mysqli_fetch_assoc($q9));
+                        while($rowen = mysqli_fetch_assoc($q9)){
+                            echo "<option class='list-group-item'  value='{$rowen['userID']}'>{$rowd['userID']}</option>";
+                        }
 
-        <form class="form-horizontal">
-            <fieldset>
-                <legend>Complete Setup</legend>
+
+                    ?>
+                    </select>
+
+
+
+
+
+
+
                 <div class="form-group">
                     <span class="glyphicon glyphicon-cloud-upload col-md-1 col-md-offset-7" aria-hidden="true" ></span>
                     <input type="submit" class="col-md-4 btn btn-primary"  value="Upload"/>
                 </div>
-            </fieldset>
         </form>
         <span>To view uploaded coursework, click <a href="landing.php">here.</a></span>
 
     </div>
 
 </div>
-<div class="row">
-</div>
+
 </body>
 </html>

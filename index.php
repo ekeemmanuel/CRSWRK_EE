@@ -1,5 +1,5 @@
 <?php
-include ("connection.php");
+include ("dbConnect.php");
 if (!isset($_SESSION['userSession'])) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $uname = $_POST['username'];
@@ -25,8 +25,13 @@ if (!isset($_SESSION['userSession'])) {
                 $reser = mysqli_fetch_array($res);
                 $uiddd = $reser[0];
                 $currentuser = $reser[1];
+                $role = $reser[5];
 
+                if($role == "student"){
+                    $_SESSION['role']=$role;
+                }
                 $_SESSION['firstName'] = $currentuser;
+                $_SESSION['uiddd'] = $uiddd;
                 header('location:landing.php');
             }
         }
@@ -39,6 +44,7 @@ else {header('location:landing.php');}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="resources/style.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script
@@ -51,7 +57,7 @@ else {header('location:landing.php');}
 <body class="container-fluid">
 <div class="row">
     <span class="glyphicon glyphicon-education col-md-4 col-md-offset-5" aria-hidden="true" ></span>
-    <div class="col-md-4 col-md-offset-3">
+        <div class="col-md-4 col-md-offset-2">
             <h3 align="center">Login</h3>
         <span style="display: none" id="hide">Account created successfully, Please Sign in</span>
         <form class="form-horizontal"  action="index.php" method ="POST">
@@ -62,16 +68,13 @@ else {header('location:landing.php');}
                      <input name="password" class="col-md-12 form-control" type="password" placeholder="Password"/>
                 </div>
                 <div class="form-group">
-                    <input  type="button" class="col-md-3 col-md-offset-5 btn" onclick="location.href='register.html'" value="Sign up"/>
+                    <input  type="button" class="col-md-3 col-md-offset-5 btn" onclick="location.href='register.php'" value="Sign up"/>
                     <input type="submit" class="col-md-3 col-md-offset-1 btn btn-primary" value="Login"/>
                 </div>
 
             </form>
+        </div>
 
-    </div>
-
-</div>
-<div class="row">
 </div>
 </body>
 </html>
