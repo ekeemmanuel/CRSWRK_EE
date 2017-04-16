@@ -1,5 +1,5 @@
 <?php
-include ("dbConnect.php");
+include ("connection.php");
 if (!isset($_SESSION['userSession'])) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $uname = $_POST['username'];
