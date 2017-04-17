@@ -1,7 +1,6 @@
 <?php
 include("connection.php");
 session_start();
-
 ?>
 
 <!DOCTYPE html>
@@ -14,11 +13,17 @@ session_start();
     <title>Dashboard</title>
 </head>
 <body class="container-fluid">
-
+<div style="position:fixed; right:10px; top:25px;">
+    <form align="right" name="form1" method="post" action="log_out.php">
+        <label class="logoutLblPos">
+            <input name="submit2" type="submit" id="submit2" value="logout">
+        </label>
+    </form>
+</div>
 <?php
 
 echo "<h4>" . "Hello  " . "{$_SESSION['firstName']}" . "<h4>";
-
+echo $_SESSION['user']." I am here";
 ?>
 
 <!--
@@ -120,8 +125,10 @@ while ($ans > 0) {
 
 
 
-<span >To setup or edit coursework, click <a
-            href="admin.php">here.</a></span>
+<div <?php if($_SESSION['role']=='student'){?>style="display: none" <?php }?> >
+    <p>To setup or edit coursework, click <a href="admin.php">here.</a></p>
+</div>
+
 </body>
 
 </html>

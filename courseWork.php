@@ -14,7 +14,14 @@ $title = $_GET['t'];
     <title>Peer Assessment</title>
 </head>
 
-<body class="container-fluid" onload="hider()">
+<body class="container-fluid">
+<div style="position:fixed; right:10px; top:25px;">
+    <form align="right" name="form1" method="post" action="log_out.php">
+        <label class="logoutLblPos">
+            <input name="submit2" type="submit" id="submit2" value="logout">
+        </label>
+    </form>
+</div>
 <div class="row">
     <span class="glyphicon glyphicon-user col-md-4 col-md-offset-5" aria-hidden="true" ></span>
     <div class="col-md-4 col-md-offset-2">
@@ -33,10 +40,7 @@ $title = $_GET['t'];
                            $q4 = mysqli_query($servcon, $sqd3);
                             if(mysqli_num_rows($q4)==1){
                                 $res1 =  mysqli_fetch_assoc($q4);
-
-
                             }
-
                     ?>
                         <div class="form-group row">
                             <label for="descr" class="col-md-8 col-form-label">Description: <?php echo $res1['description']?></label>
@@ -78,17 +82,17 @@ $title = $_GET['t'];
             </fieldset>
         </form>
 
-        <form class="form-horizontal" enctype="multipart/form-data">
+        <form class="form-horizontal" action="submit.php" method="POST" enctype="multipart/form-data">
             <fieldset>
                 <legend>Feedback Details</legend>
                 <div class="form-group">
                     <label for="feedback">Student Feedback:</label>
 
-                    <textarea class="form-control" rows="5" placeholder="Please enter your feedback here. Remember to set word limit later!"></textarea>
+                    <textarea class="form-control" rows="5" name="fdback" placeholder="Please enter your feedback here. Remember to set word limit later!"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="group">Supporting Document:</label>
-                    <input name="docs" class="col-md-12 form-control" type="file" placeholder="Upload Supporting Document" />
+                    <input name="novel" class="col-md-12 form-control" type="file" placeholder="Upload Supporting Document" />
                 </div>
                 <div class="form-group">
                     <span class="glyphicon glyphicon-floppy-open col-md-1 col-md-offset-4" aria-hidden="true" ></span>
@@ -100,20 +104,10 @@ $title = $_GET['t'];
     </div>
 </div>
 
-<div id="hide">
-<span>To setup or edit coursework, click <a href="admin.php">here.</a></span>
+
+<div <?php if($_SESSION['role']=='student'){?>style="display: none" <?php }?> >
+    <p>To setup or edit coursework, click <a href="admin.php">here.</a></p>
 </div>
-<script>
-    function hider(){
 
-            document.getElementById("hide").style.display="none";
-
-    }
-</script>
 </body>
-
-
-
-
-
 </html>

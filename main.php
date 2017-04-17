@@ -1,4 +1,7 @@
 <?php
+include("connection.php");
+session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +14,13 @@
 </head>
 
 <body class="container-fluid">
+<div style="position:fixed; right:10px; top:25px;">
+    <form align="right" name="form1" method="post" action="log_out.php">
+        <label class="logoutLblPos">
+            <input name="submit2" type="submit" id="submit2" value="logout">
+        </label>
+    </form>
+</div>
 <div class="row">
     <span class="glyphicon glyphicon-list col-md-4 col-md-offset-5" aria-hidden="true" ></span>
     <div class="col-md-8 col-md-offset-1">
@@ -59,6 +69,8 @@
 </div>
 </body>
 
-<span>To setup or edit coursework, click <a href="admin.php">here.</a></span>
+<div <?php if($_SESSION['role']=='student'){?>style="display: none" <?php }?> >
+    <p>To setup or edit coursework, click <a href="admin.php">here.</a></p>
+</div>
 
 </html>

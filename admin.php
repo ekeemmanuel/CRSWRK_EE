@@ -11,6 +11,13 @@ session_start();
     <title>Administrator Page</title>
 </head>
 <body class="container-fluid">
+<div style="position:fixed; right:10px; top:25px;">
+    <form align="right" name="form1" method="post" action="log_out.php">
+        <label class="logoutLblPos">
+            <input name="submit2" type="submit" id="submit2" value="logout">
+        </label>
+    </form>
+</div>
 <div class="row">
     <span class="glyphicon glyphicon-pencil col-md-4 col-md-offset-5" aria-hidden="true" ></span>
     <div class="col-md-4 col-md-offset-3">
