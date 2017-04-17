@@ -1,6 +1,6 @@
 <?php
 include("connection.php");
-if (!isset($_SESSION['firstName'])) {
+if (!isset($_SESSION['userSession'])) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = $_POST['username'];
         $password = $_POST['password'];
