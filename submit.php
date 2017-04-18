@@ -27,19 +27,18 @@ if (isset($_FILES['novel'])) {
                 //uniqid('', true) . '.' . $file_ext;
                 $file_destination = 'submitted/' . $file_name_new;
 
-                if (move_uploaded_file($file_tmp, $file_destination)) {
-                    $check = "SELECT * uploads WHERE user_ID='{$_SESSION['user']}'";
-                    $check1 = mysqli_query($servcon, $check);
-                    if (mysqli_num_rows($check1) > 0) ;
-                    {
-                        echo "Only one submission allowed!";
-                        header('location:courseWork.php');
-                    }
-                        $sqlInsert = "INSERT INTO uploads (user_ID,file,type,size,name,fileloc) VALUES ('{$_SESSION['user']}','$file','$file_ext','$file_size','$file_name','$file_destination')";
-                        $check3 = mysqli_query($servcon, $sqlInsert);
-                        echo "File saved to " . $file_destination;
-
-                }
+                    $query = "SELECT * uploads WHERE user_ID='{$_SESSION['user']}'";
+                    $check = mysqli_query($servcon, $query);
+                    $num_rows=mysqli_num_rows($check);
+                        if (empty($num_rows)) {
+                            $sqlInsert = "INSERT INTO uploads (user_ID,file,type,size,name,fileloc) VALUES ('{$_SESSION['user']}','$file','$file_ext','$file_size','$file_name','$file_destination')";
+                            $check3 = mysqli_query($servcon, $sqlInsert);
+                            echo "File saved to " . $file_destination;
+                            move_uploaded_file($file_tmp, $file_destination);
+                        } else{
+                            echo "Only one submission allowed!";
+                            header('location:courseWork.php');
+                        }
             }
         }
     }
