@@ -1,31 +1,29 @@
-<?php include('connection.php');
+<?php
+include('connection.php');
 
-    if($_SERVER['REQUEST_METHOD']=="POST"){
-       if( $_POST['password']=== $_POST['password1']&& $_POST['role']!="nufn") {
-         $un =   $_POST['username'];
-         $fn =  $_POST['firstname'];
-         $ln=  $_POST['lastname'];
-      $em=  $_POST['email'];
-      $pwd =password_hash($_POST['password'], PASSWORD_DEFAULT);
-           $rle =  $_POST['role'];
+if($_SERVER['REQUEST_METHOD']=="POST"){
+       if( $_POST['password1']=== $_POST['password2']&& $_POST['role']!="neutral") {
+         $userID= $_POST['username'];
+         $firstname= $_POST['firstname'];
+         $lastname= $_POST['lastname'];
+         $email= $_POST['email'];
+         $pwd= password_hash($_POST['password1'], PASSWORD_DEFAULT);
+         $userrole=  $_POST['role'];
 
-           $sq  = "INSERT INTO users VALUES ('$un','$fn','$ln','$em','$pwd','$rle')";
+         $sql= "INSERT INTO users (userID, firstname, lastname, email, password, role) VALUES ('$userID','$firstname','$lastname','$email','$pwd','$userrole')";
 
-           if (mysqli_query($servcon, $sq)) {
+           if (mysqli_query($servcon, $sql)) {
                echo "New record created successfully";
+               header("Location: index.php");
            } else {
-               echo "Error: " . $sq . "<br>" . mysqli_error($servcon);
+               echo "Error: " . $sql . "<br>" . mysqli_error($servcon);
            }
-
        }
         else{
-           header('location: register.php');
+           echo "Please enter correct details";
+           header("Location: register.php");
         }
-
-
-    }
-
-
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,47 +35,44 @@
     <title>Register</title>
 </head>
 <body class="container-fluid">
-<div class="row">
-    <div class="col-md-4 col-md-offset-3">
-        <h3 align="center">Register</h3>
-        <form class="form-horizontal" action = "register.php" method="POST" <? $_SERVER['PHP_SELF']?>>
-            <div class="form-group">
-                <input name="username"   class="col-md-12 form-control" type="text" placeholder="Username" />
-            </div>
-            <div class="form-group">
-                <input name="firstname"   class="col-md-12 form-control" type="text" placeholder="Firstname" />
-            </div>
-            <div class="form-group">
-                <input name="lastname"   class="col-md-12 form-control" type="text" placeholder="Lastname" />
-            </div>
-            <div class="form-group">
-                <input name="email"   class="col-md-12 form-control" type="email" placeholder="Email" />
-            </div>
-            <div class="form-group">
-                <input name="password" class="col-md-12 form-control" type="password" placeholder="Password"/>
-            </div>
-            <div class="form-group">
-                <input name="password1" class="col-md-12 form-control" type="password" placeholder="Confirm Password"/>
-            </div>
-
-            <div class="form-group">
-                <label>
-                    <select class="col-md-12 form-control" style="width: 412px" name="role">
-                        <option value=" nufn">Select Role</option>
-                        <option value="student">Student</option>
-                        <option value="administrator">Administrator</option>
-                    </select></label>
-            </div>
-            <div class="form-group">
-                <span class="glyphicon glyphicon-cog col-md-1 col-md-offset-7" aria-hidden="true" ></span>
-                <input type="submit" class="col-md-4 btn btn-primary"  value="Sign up"/>
-            </div>
-
-        </form>
-        <span>Already have an account? <a href="index.php">Login</a></span>
-
+    <div class="row">
+        <div class="col-md-4 col-md-offset-3">
+            <h3 align="center">Register</h3>
+            <form class="form-horizontal" action = "register.php" method="POST" <?php $_SERVER['PHP_SELF']?>>
+                <div class="form-group">
+                    <input name="username"   class="col-md-12 form-control" type="text" placeholder="e.g ST123456" />
+                </div>
+                <div class="form-group">
+                    <input name="firstname"   class="col-md-12 form-control" type="text" placeholder="Firstname" />
+                </div>
+                <div class="form-group">
+                    <input name="lastname"   class="col-md-12 form-control" type="text" placeholder="Lastname" />
+                </div>
+                <div class="form-group">
+                    <input name="email"   class="col-md-12 form-control" type="email" placeholder="Email" />
+                </div>
+                <div class="form-group">
+                    <input name="password1" class="col-md-12 form-control" type="password" placeholder="Password"/>
+                </div>
+                <div class="form-group">
+                    <input name="password2" class="col-md-12 form-control" type="password" placeholder="Confirm Password"/>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <select class="col-md-12 form-control" style="width: 100%" name="role">
+                            <option value="neutral">Select Role</option>
+                            <option value="student">Student</option>
+                            <option value="administrator">Administrator</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="form-group">
+<!--<span class="glyphicon glyphicon-cog col-md-1 col-md-offset-7" aria-hidden="true" ></span>!-->
+                    <input type="submit" class="col-md-4 btn btn-primary"  value="Sign up"/>
+                </div>
+            </form>
+            <span>Already have an account? <a href="index.php">Login</a></span>
+        </div>
     </div>
-
-</div>
 </body>
 </html>

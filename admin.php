@@ -12,6 +12,7 @@ session_start();
 </head>
 <body class="container-fluid">
 <div style="position:fixed; right:10px; top:25px;">
+    <?php include "nav.php"?>
     <form align="right" name="form1" method="post" action="log_out.php">
         <label class="logoutLblPos">
             <input name="submit2" type="submit" id="submit2" value="logout">
@@ -76,7 +77,7 @@ session_start();
                         $q9= mysqli_query($servcon, $sqd9);
                    print_r(mysqli_fetch_assoc($q9));
                         while($rowen = mysqli_fetch_assoc($q9)){
-                            echo "<option class='list-group-item'  value='{$rowen['userID']}'>{$rowd['userID']}</option>";
+                            echo "<option class='list-group-item'  value='{$rowen['userID']}'>{$rowen['userID']}</option>";
                         }
 
 

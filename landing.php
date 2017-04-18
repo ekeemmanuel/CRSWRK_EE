@@ -40,10 +40,10 @@ while ($ans > 0) {
 }
 -->
             <?php
-                $sqd = "SELECT courseCode, courseName FROM `courses` WHERE courseCode IN (SELECT courseCode FROM users_module WHERE user_Id ='{$_SESSION['user']}'";
-                   $q1 =  mysqli_query($servcon,$sqd);
-            if(mysqli_num_rows($q1)>0){
-                while($rowe=mysqli_fetch_assoc($q1)) {
+                $dbquery = "SELECT courseCode, courseName FROM `courses` WHERE courseCode IN (SELECT courseCode FROM users_module WHERE user_Id ='{$_SESSION['user']}'";
+                   $result =  mysqli_query($servcon,$dbquery);
+            if(mysqli_num_rows($result)>0){
+                while($rowe=mysqli_fetch_assoc($result)) {
                     echo "<h3>"."{$rowe['courseCode']}".":"."{$rowe['courseName']}"."</h3>". "<br/>";
                     $sqd2 = "SELECT title FROM assignment where courseCode ='{$rowe['courseCode']}'";
                     $q2 = mysqli_query($servcon,$sqd2);

@@ -1,22 +1,20 @@
 <?php
 include("connection.php");
 if (!isset($_SESSION['userSession'])) {
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {            //Checking login credentials
         $username = $_POST['username'];
         $password = $_POST['password'];
-            if (empty($_POST['username']) || empty($_POST['password'])) {
+        if (empty($_POST['username']) || empty($_POST['password'])) {
             echo "Username and password are  mandatory!";
-        }
-            else {
+        } else {
             $query = "SELECT * FROM users WHERE userID='" . $username . "' and password='" . $password . "'";
             $credentials = mysqli_query($servcon, $query);
 
             $user_id = "";
             $currentuser = "";
-                if (mysqli_num_rows($credentials) != 1) {
+            if (mysqli_num_rows($credentials) != 1) {
                 echo "username or password incorrect!";
-            }
-                else {
+            } else {
                 session_start();
 
                 $reference = mysqli_fetch_array($credentials);
@@ -25,15 +23,13 @@ if (!isset($_SESSION['userSession'])) {
                 $role = $reference[5];
 
                 $_SESSION['role'] = $role;
-
                 $_SESSION['firstName'] = $currentuser;
                 $_SESSION['user'] = $user_id;
                 header('location:landing.php');
-                }
             }
+        }
     }
-}
-    else {
+} else {
     header('location:landing.php');
 }
 ?>
@@ -56,27 +52,25 @@ if (!isset($_SESSION['userSession'])) {
     <title>Home</title>
 </head>
 <body class="container-fluid">
-<div class="row">
-    <span class="glyphicon glyphicon-education col-md-4 col-md-offset-5" aria-hidden="true"></span>
-    <div class="col-md-4 col-md-offset-2">
-        <h3 align="center">Login</h3>
-        <span style="display: none" id="hide">Account created successfully, Please Sign in</span>
-        <form class="form-horizontal" action="index.php" method="POST">
-            <div class="form-group">
-                <input name="username" class="col-md-12 form-control" type="text" placeholder="Username"/>
-            </div>
-            <div class="form-group">
-                <input name="password" class="col-md-12 form-control" type="password" placeholder="Password"/>
-            </div>
-            <div class="form-group">
-                <input type="button" class="col-md-3 col-md-offset-5 btn" onclick="location.href='register.php'"
-                       value="Sign up"/>
-                <input type="submit" class="col-md-3 col-md-offset-1 btn btn-primary" value="Login"/>
-            </div>
+    <div class="row">
+<!--    <span class="glyphicon glyphicon-education col-md-4 col-md-offset-5" aria-hidden="true"></span>!-->
+        <div class="col-md-4 col-md-offset-2">
+            <h3 align="center">Login</h3>
 
-        </form>
+            <!-- Self-referencing form!-->
+             <form class="form-horizontal" action="index.php" method="POST">
+                <div class="form-group">
+                   <input name="username" class="col-md-12 form-control" type="text" placeholder="Username"/>
+                </div>
+                <div class="form-group">
+                    <input name="password" class="col-md-12 form-control" type="password" placeholder="Password"/>
+                </div>
+                <div class="form-group">
+                    <input type="button" class="col-md-3 col-md-offset-5 btn" onclick="location.href='register.php'" value="Sign up"/>
+                    <input type="submit" class="col-md-3 col-md-offset-1 btn btn-primary" value="Login"/>
+                </div>
+             </form>
+        </div>
     </div>
-
-</div>
 </body>
 </html>

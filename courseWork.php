@@ -1,7 +1,7 @@
 <?php
 include("connection.php");
 session_start();
-
+echo $_SESSION['user'];
 $title = $_GET['t'];
 
 ?>
@@ -23,7 +23,7 @@ $title = $_GET['t'];
     </form>
 </div>
 <div class="row">
-    <span class="glyphicon glyphicon-user col-md-4 col-md-offset-5" aria-hidden="true" ></span>
+    <!--    <span class="glyphicon glyphicon-user col-md-4 col-md-offset-5" aria-hidden="true" ></span>!-->
     <div class="col-md-4 col-md-offset-2">
         <h3 align="center">Peer Assessment & Feedback</h3>
 
