@@ -14,6 +14,7 @@
                <?php if(!($_SESSION['role']=='student')){?>
                 <li><a href="admin.php">Coursework Setup</a></li>
                 <li><a href="admin2.php">Submitted Feedbacks</a></li>
+                   <li><a href="group.php">Group</a></li>
                <?php }?>
                 <li><a href="log_out.php">Log Out</a></li>
             </ul>

@@ -44,19 +44,36 @@ while($row = mysqli_fetch_assoc($result)) {
 echo     '</tbody></table>';
 ?>
 
-        <form class="form-horizontal">
+        <?php
+        if (isset($_GET['t'])){$chosen = $_GET['t'];
+        $view = "SELECT * FROM uploads WHERE user_ID='$chosen'";
+        $show = mysqli_query($servcon, $view);
+        $open = mysqli_fetch_array($show);
+        $view1 = "SELECT * FROM users WHERE user_ID='$chosen'";
+        $show1 = mysqli_query($servcon, $view);
+        $open1 = mysqli_fetch_array($show);
+
+        echo '<form class="form-horizontal">
             <fieldset>
-                <legend>Emmanuel Eke</legend>
+                <legend>'; echo $open1['firstname']." ".$open1['lastname']; echo '</legend>
                 <div class="form-group">
                     <label for="feedback">Feedback Report:</label>
-                    <textarea class="form-control" rows="5" placeholder="The student's feedback is displayed here. Remember to set word limit later!"></textarea>
+                    <textarea class="form-control" rows="5">';
+                $view2 = "SELECT * FROM uploads WHERE user_ID='$chosen'";
+                $show2 = mysqli_query($servcon, $view2);
+                $row2 = mysqli_fetch_array($show2);
+            echo '</textarea>
                 </div>
                 <div class="form-group">
                     <label for="group">Supporting Document:</label>
-                    <input name="docs" class="col-md-12 form-control" type="file" placeholder="Upload Supporting Document" />
+                    <input name="docs" class="col-md-12 form-control" type="file"/>
                 </div>
             </fieldset>
-        </form>
+        </form>';}
+        else {
+            echo "Please select a student to display feedback";
+        }
+        ?>
     </div>
 </div>
 </body>

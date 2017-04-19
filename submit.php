@@ -8,7 +8,8 @@ $user_ID = $_SESSION['user'];
 $userFN = $_SESSION['firstName'];
 echo $user_ID;
 include "nav.php";
-if (isset($_FILES['novel'])) {
+if (isset($_FILES['novel']) and ($_POST['fdback'])) {
+    $texta=$_POST['fdback'];
     $file = $_FILES['novel'];
     //file properties
     $file_name = $file['name'];
@@ -36,7 +37,7 @@ if (isset($_FILES['novel'])) {
                 $result = mysqli_query($servcon, $query);
                 echo mysqli_num_rows($result);
                 if (mysqli_num_rows($result) === 0) {
-                    $query1 = "INSERT INTO uploads (user_ID,file,type,size,name,fileloc) VALUES ('$user_ID','$file','$file_ext','$file_size','$file_name','$file_destination')";
+                    $query1 = "INSERT INTO uploads (user_ID,texta,type,size,name,fileloc) VALUES ('$user_ID','$texta','$file_ext','$file_size','$file_name','$file_destination')";
                     echo $query1;
                     $result1 = mysqli_query($servcon, $query1);
                     echo "File saved to " . $file_destination;
@@ -48,7 +49,11 @@ if (isset($_FILES['novel'])) {
             }
         }
     }
+}else{
+    echo "Please fill in required fields";
+    header('location:courseWork.php?s=$user_ID');
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -67,8 +72,8 @@ if (isset($_FILES['novel'])) {
     <h3><?php echo $userFN . "_" . $user_ID ?></h3>
     <table width="80%" border="1">
         <tr>
+            <td>Report</td>
             <td>File Name</td>
-            <td>File Size(KB)</td>
             <td>View</td>
             <td>Delete</td>
         </tr>
@@ -78,13 +83,13 @@ if (isset($_FILES['novel'])) {
         $row = mysqli_fetch_array($show);
         ?>
         <tr>
+            <td><?php echo $row['texta'] ?></td>
             <td><?php echo $row['name'] ?></td>
-            <td><?php echo $row['size'] ?></td>
-            <td><a href="submitted/<?php echo $row['file'] ?>" target="_blank">view file</a></td>
+            <td><a href="submitted/<?php echo $row['name'] ?>" target="_blank">view file</a></td>
             <td>
                 <form action="submit.php" method="GET"><input type="submit" value="Delete"></form>
             </td>
-        </tr>
+            </tr>
         <?php if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $sql_del = "DELETE FROM uploads WHERE user_ID='$user_ID'";
             $remove = mysqli_query($servcon, $sql_del);

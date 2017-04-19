@@ -59,7 +59,7 @@ if (isset($_GET['t'])) {
                     <label for="feedback">Student Feedback:</label>
 
                     <textarea class="form-control" rows="5" name="fdback"
-                              placeholder="Please enter your feedback here. Remember to set word limit later!"></textarea>
+                              placeholder="Please enter your feedback here"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="group">Supporting Document:</label>
