@@ -1,11 +1,19 @@
 <?php
-include("connection.php");
-if (!isset($_SESSION['userSession'])) {
+include("resources/connection.php");
+if (!isset($_SESSION['user'])) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {            //Checking login credentials
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        $username = strip_tags($_POST['username']);         //Security check
+        $password = strip_tags($_POST['password']);
+
+        $username = $servcon->real_escape_string($username);
+        $password = $servcon->real_escape_string($password);
+
+
         if (empty($_POST['username']) || empty($_POST['password'])) {
-            echo "Username and password are  mandatory!";
+            echo "<div class='alert alert-danger'>
+     <span class='glyphicon glyphicon-info-sign'></span> &nbsp; Username and Password are mandatory!
+    </div>";
+
         } else {
             $query = "SELECT * FROM users WHERE userID='" . $username . "' and password='" . $password . "'";
             $credentials = mysqli_query($servcon, $query);
@@ -13,7 +21,9 @@ if (!isset($_SESSION['userSession'])) {
             $user_id = "";
             $currentuser = "";
             if (mysqli_num_rows($credentials) != 1) {
-                echo "username or password incorrect!";
+                echo "<div class='alert alert-danger'>
+     <span class='glyphicon glyphicon-info-sign'></span> &nbsp; Invalid Username or Password !
+    </div>";
             } else {
                 session_start();
 
@@ -32,6 +42,7 @@ if (!isset($_SESSION['userSession'])) {
 } else {
     header('location:landing.php');
 }
+$servcon->close();
 ?>
 
 <!DOCTYPE html>
@@ -48,6 +59,7 @@ if (!isset($_SESSION['userSession'])) {
             src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Black|Asar" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Home</title>
 </head>
@@ -55,7 +67,7 @@ if (!isset($_SESSION['userSession'])) {
     <div class="row">
 <!--    <span class="glyphicon glyphicon-education col-md-4 col-md-offset-5" aria-hidden="true"></span>!-->
         <div class="col-md-4 col-md-offset-2">
-            <h3 align="center">Login</h3>
+            <h3 id="first" align="center">Login</h3>
 
             <!-- Self-referencing form!-->
              <form class="form-horizontal" action="index.php" method="POST">

@@ -1,12 +1,6 @@
 <?php
-include("connection.php");
+include("resources/connection.php");
 session_start();
-if (isset($_GET['t'])) {
-    echo $_SESSION['user'];
-    $title = $_GET['t'];}
-    else{
-    header('location:landing.php');
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +13,19 @@ if (isset($_GET['t'])) {
 </head>
 
 <body class="container-fluid">
-<?php include "nav.php" ?>
+<?php include "resources/nav.php"; if (isset($_GET['t']) or isset($_SESSION['title'])) {
+    echo "<br><br><br>";
+    echo $_SESSION['user'];
+    $_SESSION['title']=$_GET['t'];
+    $title = $_SESSION['title'];
+    if(isset($_SESSION['failed'])){
+        echo "<font color='red'>".$_SESSION['failed']."</font>";
+        unset($_SESSION['failed']);}
+}
+else{
+    header('location:landing.php');
+}
+?>
 <div class="row">
     <!--    <span class="glyphicon glyphicon-user col-md-4 col-md-offset-5" aria-hidden="true" ></span>!-->
     <div class="col-md-4 col-md-offset-2">
@@ -33,7 +39,7 @@ if (isset($_GET['t'])) {
                     <div class="form-group row">
                         <label for="inputTitle" class="col-md-8 col-form-label">Title: <?php echo $title ?></label>
                     </div>
-                    <?php $sqd3 = "SELECT * FROM assignment WHERE title ='{$_GET['t']}' ";
+                    <?php $sqd3 = "SELECT * FROM assignment WHERE title ='$title' ";
                     $res1 = null;
                     $q4 = mysqli_query($servcon, $sqd3);
                     if (mysqli_num_rows($q4) == 1) {
@@ -63,8 +69,7 @@ if (isset($_GET['t'])) {
                 </div>
                 <div class="form-group">
                     <label for="group">Supporting Document:</label>
-                    <input name="novel" class="col-md-12 form-control" type="file"
-                           placeholder="Upload Supporting Document"/>
+                    <input name="novel" class="col-md-12 form-control" type="file" placeholder="Upload Supporting Document"/>
                 </div>
                 <div class="form-group">
                     <span class="glyphicon glyphicon-floppy-open col-md-1 col-md-offset-6" aria-hidden="true"></span>
@@ -76,7 +81,7 @@ if (isset($_GET['t'])) {
     </div>
 </div>
 
-<?php include "administrator.php" ?>
+<?php include "resources/administrator.php" ?>
 
 </body>
 </html>

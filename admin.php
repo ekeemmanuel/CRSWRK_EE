@@ -1,5 +1,5 @@
 <?php
-include("connection.php");
+include("resources/connection.php");
 session_start();
 ?>
 <!DOCTYPE html>
@@ -12,11 +12,25 @@ session_start();
     <title>Administrator Page</title>
 </head>
 <body class="container-fluid">
-<?php include "nav.php" ?>
+<?php include "resources/nav.php" ?>
 <div class="row">
     <span class="glyphicon glyphicon-pencil col-md-4 col-md-offset-5" aria-hidden="true"></span>
     <div class="col-md-4 col-md-offset-3">
         <h3 align="center">Administrator</h3>
+
+        <?php
+
+        if(isset($_SESSION['success'])){
+            echo "<font color='blue'>".$_SESSION['success']."</font>";
+            unset($_SESSION['success']);
+        }
+        if(isset($_SESSION['failed'])){
+            echo "<font color='red'>".$_SESSION['failed']."</font>";
+            unset($_SESSION['failed']);
+        }
+
+        ?>
+
         <legend>Coursework Setup</legend>
 
         <form class="form-horizontal" method="post" action="adminexe.php" enctype="multipart/form-data">

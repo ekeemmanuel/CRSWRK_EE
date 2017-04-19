@@ -1,5 +1,5 @@
 <?php
-include("connection.php");
+include("resources/connection.php");
 session_start();
 $sid = $_SESSION['user'];
 ?>
@@ -15,7 +15,7 @@ $sid = $_SESSION['user'];
 </head>
 <body class="container-fluid">
 
-<?php include "nav.php" ?>
+<?php include "resources/nav.php" ?>
 
 <?php
 echo "<br><br><br>";
@@ -70,7 +70,7 @@ if (mysqli_num_rows($result)===0){
 }
 ?>
 
-<?php include "administrator.php" ?>
+<?php include "resources/administrator.php" ?>
 
 </body>
 </html>
