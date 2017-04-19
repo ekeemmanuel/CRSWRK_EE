@@ -1,6 +1,7 @@
 <?php
 include("connection.php");
 session_start();
+$sid = $_SESSION['user'];
 ?>
 
 <!DOCTYPE html>
@@ -13,116 +14,63 @@ session_start();
     <title>Dashboard</title>
 </head>
 <body class="container-fluid">
-<div style="position:fixed; right:10px; top:25px;">
-    <form align="right" name="form1" method="post" action="log_out.php">
-        <label class="logoutLblPos">
-            <input name="submit2" type="submit" id="submit2" value="logout">
-        </label>
-    </form>
-</div>
-<?php
 
+<?php include "nav.php" ?>
+
+<?php
+echo "<br><br><br>";
 echo "<h4>" . "Hello  " . "{$_SESSION['firstName']}" . "<h4>";
-echo $_SESSION['user']." I am here";
+echo "Access Level: ".$_SESSION['role']
 ?>
 
-<!--
-$que = "SELECT * FROM courses WHERE courseCode IN (SELECT courseCode FROM users_module WHERE user_Id = $uiddd)";
-$selected = mysqli_query($servcon, $que);
-$ans = mysqli_num_rows($selected);
-while ($ans > 0) {
-    $rows2 = mysqli_fetch_array($selected);
-
-
-    echo "{$rows2[1]}";
-
-
-}
--->
-            <?php
-                $dbquery = "SELECT courseCode, courseName FROM `courses` WHERE courseCode IN (SELECT courseCode FROM users_module WHERE user_Id ='{$_SESSION['user']}'";
-                   $result =  mysqli_query($servcon,$dbquery);
-            if(mysqli_num_rows($result)>0){
-                while($rowe=mysqli_fetch_assoc($result)) {
-                    echo "<h3>"."{$rowe['courseCode']}".":"."{$rowe['courseName']}"."</h3>". "<br/>";
-                    $sqd2 = "SELECT title FROM assignment where courseCode ='{$rowe['courseCode']}'";
-                    $q2 = mysqli_query($servcon,$sqd2);
-                    if(mysqli_num_rows($q2)>0){
-                        while($rowe2=mysqli_fetch_assoc($q2)){
-                            echo "<a href='courseWork.php?t={$rowe2['title']}'>"."{$rowe2['title']}"."</a>". "<br/>";
-                        }
-                    }
-                }
-
+<?php
+//Checking for user role
+if($_SESSION['role']=='administrator'){
+            echo '<span class="glyphicon glyphicon-list col-md-4 col-md-offset-5" aria-hidden="true"></span>
+            <div class="col-md-8 col-md-offset-1">
+            <h3 align="center">Coursework Details</h3>';
+            $dbquery = "SELECT distinct courseCode FROM users_module";
+            $result =  mysqli_query($servcon,$dbquery);
+            while($row = mysqli_fetch_assoc($result)){
+            echo '<div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading"><class="list-group-item active">'.$row['courseCode'].'</a></div>';
+            echo getCourseTitle($row['courseCode']);
             }
-
-
-
-
-
-
-            ?>
-<div class="row">
-    <span class="glyphicon glyphicon-list col-md-4 col-md-offset-5" aria-hidden="true"></span>
-    <div class="col-md-8 col-md-offset-1">
-        <h3 align="center">Coursework Details</h3>
-
-        <div class="panel panel-default">
+}else
+    {
+echo '<span class="glyphicon glyphicon-list col-md-4 col-md-offset-5" aria-hidden="true"></span>
+            <div class="col-md-8 col-md-offset-1">
+            <h3 align="center">Coursework Details</h3>';
+                $dbquery = "SELECT distinct courseCode FROM users_module WHERE user_Id ='$sid'";
+                   $result =  mysqli_query($servcon,$dbquery);
+                  while($row = mysqli_fetch_assoc($result)){
+                      echo '<div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading">
-                <class
-                ="list-group-item active">CMM OO7</a></div>
-            <div class="list-group">
-                <a href="courseWork.php" class="list-group-item">Coursework 1</a>
-                <a href="courseWork.php" class="list-group-item">Coursework 2</a>
-                <a href="courseWork.php" class="list-group-item">Coursework 3</a>
-            </div>
-        </div>
+            <div class="panel-heading"><class="list-group-item active">'.$row['courseCode'].'</a></div>';
 
-        <div class="panel panel-default">
-            <!-- Default panel contents -->
-            <div class="panel-heading">
-                <class
-                ="list-group-item active">CMM OO8</a></div>
-            <div class="list-group">
-                <a href="courseWork.php" class="list-group-item">Coursework 1</a>
-                <a href="courseWork.php" class="list-group-item">Coursework 2</a>
-                <a href="courseWork.php" class="list-group-item">Coursework 3</a>
-            </div>
-        </div>
+                      echo getCourseTitle($row['courseCode']);
+                  }
+    }
+function getCourseTitle($cid){
+    global $servcon;
+    $msg = "";
+    $dbqueryx = "SELECT title FROM assignment WHERE courseCode ='$cid'";
+    $resultx =  mysqli_query($servcon,$dbqueryx);
+    $msg .='<div class="list-group">';
+    while($rowx = mysqli_fetch_assoc($resultx)){
+        $msg .= "<a href='courseWork.php?t=".$rowx['title']."' class='list-group-item'>".$rowx['title']."</a>";
+    }
+    $msg .="</div></div>";
+    return $msg;
+}
 
-        <div class="panel panel-default">
-            <!-- Default panel contents -->
-            <div class="panel-heading">
-                <class
-                ="list-group-item active">CMM O21</a></div>
-            <div class="list-group">
-                <a href="courseWork.php" class="list-group-item">Coursework 1</a>
-                <a href="courseWork.php" class="list-group-item">Coursework 2</a>
-                <a href="courseWork.php" class="list-group-item">Coursework 3</a>
-            </div>
-        </div>
+if (mysqli_num_rows($result)===0){
+    echo '<div class="list-group">'."There is currently no coursework for you.".'</div>';
+}
+?>
 
-        <div class="panel panel-default">
-            <!-- Default panel contents -->
-            <div class="panel-heading"><a class="list-group-item active">CMM 501</a></div>
-            <div class="list-group">
-                <a href="courseWork.php" class="list-group-item">Coursework 1</a>
-                <a href="courseWork.php" class="list-group-item">Coursework 2</a>
-                <a href="courseWork.php" class="list-group-item">Coursework 3</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-<div <?php if($_SESSION['role']=='student'){?>style="display: none" <?php }?> >
-    <p>To setup or edit coursework, click <a href="admin.php">here.</a></p>
-</div>
+<?php include "administrator.php" ?>
 
 </body>
-
 </html>

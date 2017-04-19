@@ -1,11 +1,15 @@
 <?php
-include 'connection.php';
+include("connection.php");
+error_reporting(E_ALL);
+ini_set('display_errors',1);
 session_start();
-echo $_SESSION['user'];
+echo "<br><br><br>";
+$user_ID = $_SESSION['user'];
+$userFN = $_SESSION['firstName'];
+echo $user_ID;
+include "nav.php";
 if (isset($_FILES['novel'])) {
     $file = $_FILES['novel'];
-    //print_r($file);
-
     //file properties
     $file_name = $file['name'];
     $file_tmp = $file['tmp_name'];
@@ -27,18 +31,20 @@ if (isset($_FILES['novel'])) {
                 //uniqid('', true) . '.' . $file_ext;
                 $file_destination = 'submitted/' . $file_name_new;
 
-                    $query = "SELECT * uploads WHERE user_ID='{$_SESSION['user']}'";
-                    $check = mysqli_query($servcon, $query);
-                    $num_rows=mysqli_num_rows($check);
-                        if (empty($num_rows)) {
-                            $sqlInsert = "INSERT INTO uploads (user_ID,file,type,size,name,fileloc) VALUES ('{$_SESSION['user']}','$file','$file_ext','$file_size','$file_name','$file_destination')";
-                            $check3 = mysqli_query($servcon, $sqlInsert);
-                            echo "File saved to " . $file_destination;
-                            move_uploaded_file($file_tmp, $file_destination);
-                        } else{
-                            echo "Only one submission allowed!";
-                            header('location:courseWork.php');
-                        }
+                $query = "SELECT user_ID FROM uploads WHERE user_ID='$user_ID'";
+
+                $result = mysqli_query($servcon, $query);
+                echo mysqli_num_rows($result);
+                if (mysqli_num_rows($result) === 0) {
+                    $query1 = "INSERT INTO uploads (user_ID,file,type,size,name,fileloc) VALUES ('$user_ID','$file','$file_ext','$file_size','$file_name','$file_destination')";
+                    echo $query1;
+                    $result1 = mysqli_query($servcon, $query1);
+                    echo "File saved to " . $file_destination;
+                    move_uploaded_file($file_tmp, $file_destination);
+                } else {
+                    echo "Only one submission allowed!";
+                    //header('location:courseWork.php');
+                }
             }
         }
     }
@@ -56,7 +62,9 @@ if (isset($_FILES['novel'])) {
 </head>
 
 <body class="container-fluid">
-<fieldset><h3><?php echo $_SESSION['firstName'] . "_" . $_SESSION['user'] ?></h3>
+<?php include "nav.php" ?>
+<fieldset>
+    <h3><?php echo $userFN . "_" . $user_ID ?></h3>
     <table width="80%" border="1">
         <tr>
             <td>File Name</td>
@@ -65,19 +73,22 @@ if (isset($_FILES['novel'])) {
             <td>Delete</td>
         </tr>
         <?php
-        $sql = "SELECT * FROM uploads";
-        $result_set = mysqli_query($servcon, $sql);
-        $row = mysqli_fetch_array($result_set);
+        $view = "SELECT * FROM uploads WHERE user_ID='$user_ID'";
+        $show = mysqli_query($servcon, $view);
+        $row = mysqli_fetch_array($show);
         ?>
         <tr>
             <td><?php echo $row['name'] ?></td>
             <td><?php echo $row['size'] ?></td>
             <td><a href="submitted/<?php echo $row['file'] ?>" target="_blank">view file</a></td>
             <td>
-                <form action="submit.php" method="POST"><input type="submit" value="Delete"></form>
+                <form action="submit.php" method="GET"><input type="submit" value="Delete"></form>
             </td>
         </tr>
-        <?php $sql_del = "DELETE FROM uploads WHERE user_ID={$_SESSION['user']}"; ?>
+        <?php if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $sql_del = "DELETE FROM uploads WHERE user_ID='$user_ID'";
+            $remove = mysqli_query($servcon, $sql_del);
+        }?>
     </table>
 </fieldset>
 </body>

@@ -36,6 +36,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 </head>
 <body class="container-fluid">
     <div class="row">
+        <?php include "nav.php" ?>
         <div class="col-md-4 col-md-offset-3">
             <h3 align="center">Register</h3>
             <form class="form-horizontal" action = "register.php" method="POST" <?php $_SERVER['PHP_SELF']?>>
