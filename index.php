@@ -65,21 +65,21 @@ $servcon->close();
 </head>
 <body class="container-fluid">
     <div class="row">
-<!--    <span class="glyphicon glyphicon-education col-sm-4 col-sm-offset-5" aria-hidden="true"></span>!-->
-        <div class="col-sm-4 col-sm-offset-2">
+<!--    <span class="glyphicon glyphicon-education col-md-4 col-md-offset-5" aria-hidden="true"></span>!-->
+        <div class="col-md-4 col-md-offset-2">
             <h3 id="first" align="center">Login</h3>
 
             <!-- Self-referencing form!-->
              <form class="form-horizontal" action="index.php" method="POST">
                 <div class="form-group">
-                   <input name="username" class="col-sm-12 form-control" type="text" placeholder="Username"/>
+                   <input name="username" class="col-md-12 form-control" type="text" placeholder="Username"/>
                 </div>
                 <div class="form-group">
-                    <input name="password" class="col-sm-12 form-control" type="password" placeholder="Password"/>
+                    <input name="password" class="col-md-12 form-control" type="password" placeholder="Password"/>
                 </div>
                 <div class="form-group">
-                    <input type="button" class="col-sm-3 col-sm-offset-5 btn" onclick="location.href='register.php'" value="Sign up"/>
-                    <input type="submit" class="col-sm-3 col-sm-offset-1 btn btn-primary" value="Login"/>
+                    <input type="button" class="col-md-3 col-md-offset-5 btn" onclick="location.href='register.php'" value="Sign up"/>
+                    <input type="submit" class="col-md-3 col-md-offset-1 btn btn-primary" value="Login"/>
                 </div>
              </form>
         </div>

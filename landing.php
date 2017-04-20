@@ -26,8 +26,8 @@ echo "Access Level: " . $_SESSION['role']
 <?php
 //Checking for user role
 
-echo '<span class="glyphicon glyphicon-list col-sm-4 col-sm-offset-5" aria-hidden="true"></span>
-            <div class="col-sm-8 col-sm-offset-1">
+echo '<span class="glyphicon glyphicon-list col-md-4 col-md-offset-5" aria-hidden="true"></span>
+            <div class="col-md-8 col-md-offset-1">
             <h3 align="center">Coursework Details</h3>';
 $dbquery = "SELECT distinct courseCode FROM courses";
 $result = mysqli_query($servcon, $dbquery);

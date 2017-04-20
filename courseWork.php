@@ -27,8 +27,8 @@ if (isset($_GET['t'])) {
 }
 ?>
 <div class="row">
-    <!--    <span class="glyphicon glyphicon-user col-sm-4 col-sm-offset-5" aria-hidden="true" ></span>!-->
-    <div class="col-sm-4 col-sm-offset-2">
+    <!--    <span class="glyphicon glyphicon-user col-md-4 col-md-offset-5" aria-hidden="true" ></span>!-->
+    <div class="col-md-4 col-md-offset-2">
         <br>
         <h3 align="center">Peer Assessment & Feedback</h3>
 
@@ -38,7 +38,7 @@ if (isset($_GET['t'])) {
 
                 <div class="container">
                     <div class="form-group row">
-                        <label for="inputTitle" class="col-sm-8 col-form-label">Title: <?php echo $title ?></label>
+                        <label for="inputTitle" class="col-md-8 col-form-label">Title: <?php echo $title ?></label>
                     </div>
                     <?php $sqd3 = "SELECT * FROM assignment WHERE title ='$title' ";
                     $res1 = null;
@@ -49,10 +49,10 @@ if (isset($_GET['t'])) {
                     ?>
                     <div class="form-group row">
                         <label for="descr"
-                               class="col-sm-8 col-form-label">Description: <?php echo $res1['description'] ?></label>
+                               class="col-md-8 col-form-label">Description: <?php echo $res1['description'] ?></label>
                     </div>
                     <div class="form-group row">
-                        <label for="subm" class="col-sm-8 col-form-label">Submission
+                        <label for="subm" class="col-md-8 col-form-label">Submission
                             Deadline: <?php echo $res1['submissionDate'] ?></label>
                     </div>
             </fieldset>
@@ -71,11 +71,11 @@ if (isset($_GET['t'])) {
                 </div>
                 <div class="form-group">
                     <label for="group">Supporting Document:</label>
-                    <input name="novel" class="col-sm-12 form-control" type="file" placeholder="Upload Supporting Document"/>
+                    <input name="novel" class="col-md-12 form-control" type="file" placeholder="Upload Supporting Document"/>
                 </div>
                 <div class="form-group">
-                    <span class="glyphicon glyphicon-floppy-open col-sm-1 col-sm-offset-6" aria-hidden="true"></span>
-                    <input type="submit" class="col-sm-5 btn btn-primary" value="Submit"/>
+                    <span class="glyphicon glyphicon-floppy-open col-md-1 col-md-offset-6" aria-hidden="true"></span>
+                    <input type="submit" class="col-md-5 btn btn-primary" value="Submit"/>
                 </div>
             </fieldset>
         </form>';
