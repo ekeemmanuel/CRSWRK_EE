@@ -19,14 +19,12 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                echo "Error: " . $sql . "<br>" . mysqli_error($servcon);
            }
        }
-        //else{
-          // echo "Please enter correct details";
-          // header("Location: register.php");
-        //}
-}
-echo "<div class='alert alert-danger'>
+       else{
+            echo "<div class='alert alert-danger'>
      <span class='glyphicon glyphicon-info-sign'></span> &nbsp; Please enter correct details!
     </div>";
+        }
+}
 ?>
 
 <!DOCTYPE html>
