@@ -13,23 +13,24 @@ session_start();
 </head>
 
 <body class="container-fluid">
-<?php include "resources/nav.php"; if (isset($_GET['t']) or isset($_SESSION['title'])) {
+<?php include "resources/nav.php";
+if (isset($_GET['t'])) {
     echo "<br><br><br>";
     echo $_SESSION['user'];
-    $_SESSION['title']=$_GET['t'];
-    $title = $_SESSION['title'];
-    if(isset($_SESSION['failed'])){
-        echo "<font color='red'>".$_SESSION['failed']."</font>";
-        unset($_SESSION['failed']);}
-}
-else{
+    $title = $_GET['t'];
+    if (isset($_SESSION['failed'])) {
+        echo "<font color='red'>" . $_SESSION['failed'] . "</font>";
+        unset($_SESSION['failed']);
+    }
+} else {
     header('location:landing.php');
 }
 ?>
 <div class="row">
-    <!--    <span class="glyphicon glyphicon-user col-md-4 col-md-offset-5" aria-hidden="true" ></span>!-->
-    <div class="col-md-4 col-md-offset-2">
-        <br><h3 align="center">Peer Assessment & Feedback</h3>
+    <!--    <span class="glyphicon glyphicon-user col-sm-4 col-sm-offset-5" aria-hidden="true" ></span>!-->
+    <div class="col-sm-4 col-sm-offset-2">
+        <br>
+        <h3 align="center">Peer Assessment & Feedback</h3>
 
         <form class="form-horizontal">
             <fieldset>
@@ -37,7 +38,7 @@ else{
 
                 <div class="container">
                     <div class="form-group row">
-                        <label for="inputTitle" class="col-md-8 col-form-label">Title: <?php echo $title ?></label>
+                        <label for="inputTitle" class="col-sm-8 col-form-label">Title: <?php echo $title ?></label>
                     </div>
                     <?php $sqd3 = "SELECT * FROM assignment WHERE title ='$title' ";
                     $res1 = null;
@@ -48,20 +49,21 @@ else{
                     ?>
                     <div class="form-group row">
                         <label for="descr"
-                               class="col-md-8 col-form-label">Description: <?php echo $res1['description'] ?></label>
+                               class="col-sm-8 col-form-label">Description: <?php echo $res1['description'] ?></label>
                     </div>
                     <div class="form-group row">
-                        <label for="subm" class="col-md-8 col-form-label">Submission
+                        <label for="subm" class="col-sm-8 col-form-label">Submission
                             Deadline: <?php echo $res1['submissionDate'] ?></label>
                     </div>
             </fieldset>
         </form>
 
-<?php if($_SESSION['role']=='student') {
-    echo '<form class="form-horizontal" action="submit.php" method="POST" enctype="multipart/form-data">
+        <?php if ($_SESSION['role'] == 'student') {
+            echo '<form class="form-horizontal" action="submit.php" method="POST" enctype="multipart/form-data">
             <fieldset>
                 <legend>Feedback Details</legend>
                 <div class="form-group">
+                <input type="hidden" name="title" value="' . $title . '"/>
                     <label for="feedback">Student Feedback:</label>
 
                     <textarea class="form-control" rows="5" name="fdback"
@@ -69,15 +71,15 @@ else{
                 </div>
                 <div class="form-group">
                     <label for="group">Supporting Document:</label>
-                    <input name="novel" class="col-md-12 form-control" type="file" placeholder="Upload Supporting Document"/>
+                    <input name="novel" class="col-sm-12 form-control" type="file" placeholder="Upload Supporting Document"/>
                 </div>
                 <div class="form-group">
-                    <span class="glyphicon glyphicon-floppy-open col-md-1 col-md-offset-6" aria-hidden="true"></span>
-                    <input type="submit" class="col-md-5 btn btn-primary" value="Submit"/>
+                    <span class="glyphicon glyphicon-floppy-open col-sm-1 col-sm-offset-6" aria-hidden="true"></span>
+                    <input type="submit" class="col-sm-5 btn btn-primary" value="Submit"/>
                 </div>
             </fieldset>
         </form>';
-}?>
+        } ?>
     </div>
 </div>
 
