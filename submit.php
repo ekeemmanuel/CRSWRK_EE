@@ -119,15 +119,18 @@ if ($_SESSION['role'] == "student") {
         echo "<table class=\"table\">
         <tr>
             <td>S/No</td>
+            <td>Coursework Title</td>
             <td>Student ID</td>
             <td>Report</td>
             <td>Supporting Documents</td>
+            <td>Delete</td>
         </tr>";
         $counter = 1;
         $adm = "SELECT * FROM uploads";
         $lec = mysqli_query($servcon, $adm);
         while ($displ = mysqli_fetch_assoc($lec)) {
             echo "<tr><td>" . $counter++ . " </td > ";
+            echo "<td><a href='viewspec.php?c=" . $displ['user_ID'] . "'>" . $displ['courseworkTitle'] . " .</a></td>";
             echo "<td>" . $displ['user_ID'] . " </td > ";
             echo "<td > " . $displ['texta'] . "</td > ";
             if (empty($displ['name'])) {
@@ -135,6 +138,9 @@ if ($_SESSION['role'] == "student") {
             } else {
                 echo "<td ><a href = \"submitted/" . $displ['name'] . " \" target=\"_blank\">view file</a></td>";
             }
+        echo "<td>
+              <a href='deletecrs.php?y=" . $displ['courseworkTitle'] . "'>Delete</a>
+            </td>";
         }
         echo "</tr></table>";
     } ?>
