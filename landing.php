@@ -29,12 +29,12 @@ echo "Access Level: " . $_SESSION['role']
 echo '<span class="glyphicon glyphicon-list col-md-4 col-md-offset-5" aria-hidden="true"></span>
             <div class="col-md-8 col-md-offset-2">
             <h3 align="center">Coursework Details</h3>';
-$dbquery = "SELECT distinct courseCode FROM courses";
+$dbquery = "SELECT * FROM courses";
 $result = mysqli_query($servcon, $dbquery);
 while ($row = mysqli_fetch_assoc($result)) {
     echo '<div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading"><class="list-group-item active">' . $row['courseCode'] . '</a></div>';
+            <div class="panel-heading"><class="list-group-item active">' . $row['courseCode'].': '.$row['courseName']. '</a></div>';
 
     echo getCourseTitle($row['courseCode']);
 }
