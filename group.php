@@ -14,7 +14,7 @@ session_start();
 <body class="container-fluid">
 <?php include "resources/nav.php"?>
 <div class="row">
-    <br><br><br><br>
+    <br><br><br><br><br>
     <div class="col-md-6 col-md-offset-3">
 
         <?php

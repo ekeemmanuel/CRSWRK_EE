@@ -62,7 +62,7 @@ session_start();
                          }?></textarea>
                     </div>
                     <div class="form-group">
-                        <input type="button" class="col-md-3 col-md-offset-5 btn" onclick="location.href='submit.php'" value="return"/>
+                        <input type="button" class="col-md-3 col-md-offset-5 btn" onclick="location.href='submit.php'" enabled value="return"/>
                     </div>
             </fieldset>
         </form>

@@ -66,6 +66,7 @@ $servcon->close();
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Home</title>
 </head>
+<br><br>
 <body class="freestyle">
 <div class="free">
     <div class="row">
