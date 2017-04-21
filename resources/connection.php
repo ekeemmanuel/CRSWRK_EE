@@ -32,5 +32,5 @@ if(!$servcon){
     exit;
 
 }
-else{echo "eesquare peer review app";}
+else{echo "<header style='color: cyan; font-size: 30px; font-style: italic'>eesquare peer review app</header>";}
 ?>

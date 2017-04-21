@@ -1,5 +1,8 @@
 <?php
 include("resources/connection.php");
+if (isset($_GET['g'])){
+    echo "New record created successfully";
+}
 if (!isset($_SESSION['user'])) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {            //Checking login credentials
         $username = strip_tags($_POST['username']);         //Security check
