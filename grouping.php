@@ -156,5 +156,6 @@ include "resources/nav.php"; ?>
 
     </div>
 </div>
+<?php include "resources/footer.php" ?>
 </body>
 </html>

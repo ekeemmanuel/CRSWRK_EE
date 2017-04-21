@@ -47,5 +47,6 @@ session_start();
             echo '</tbody></table>';
             ?>
         </div>
+<?php include "resources/footer.php" ?>
 </body>
 </html>

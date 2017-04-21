@@ -14,7 +14,8 @@
                 <li><a href="landing.php">Home</a></li>
                 <li><a href="submit.php">Submitted Feedbacks</a></li>
                 <?php if (!($_SESSION['role'] == 'student')) { ?>
-                    <li><a href="admin.php">Coursework Setup</a></li>
+                    <li><a href="admin.php">Add Coursework</a></li>
+                    <li><a href="crsremove.php">Delete Coursework</a></li>
                     <li><a href="group.php">Group Creation</a></li>
                     <li><a href="grouping.php">Student Grouping</a></li>
                 <?php } ?>

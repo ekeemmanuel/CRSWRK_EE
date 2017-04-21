@@ -126,7 +126,7 @@ if ($_SESSION['role'] == "student") {
             <td>Delete</td>
         </tr>";
         $counter = 1;
-        $adm = "SELECT * FROM uploads";
+        $adm = "SELECT * FROM uploads ";
         $lec = mysqli_query($servcon, $adm);
         while ($displ = mysqli_fetch_assoc($lec)) {
             echo "<tr><td>" . $counter++ . " </td > ";
@@ -144,7 +144,7 @@ if ($_SESSION['role'] == "student") {
         }
         echo "</tr></table>";
     } ?>
-
+    <?php include "resources/footer.php" ?>
 </fieldset>
 </body>
 </html>

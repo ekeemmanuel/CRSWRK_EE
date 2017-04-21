@@ -81,7 +81,7 @@ if (isset($_GET['t'])) {
     </div>
 </div>
 
-<?php include "resources/administrator.php" ?>
+<?php include "resources/footer.php" ?>
 
 </body>
 </html>

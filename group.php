@@ -83,5 +83,6 @@ session_start();
         </div>
     </div>
 </div>
+<?php include "resources/footer.php" ?>
 </body>
 </html>

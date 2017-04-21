@@ -62,7 +62,7 @@ session_start();
                 <span class="glyphicon glyphicon-cloud-upload col-sm-1 col-sm-offset-7" aria-hidden="true"></span>
                 <input type="submit" class="col-sm-4 btn btn-primary" value="Upload"/>
             </div>
-            <footer><a href="crsremove.php" style="color: red">Delete</a> uploaded coursework</footer>
     </div>
+<?php include "resources/footer.php" ?>
 </body>
 </html>

@@ -58,7 +58,7 @@ if (mysqli_num_rows($result) === 0) {
 }
 ?>
 
-<?php include "resources/administrator.php" ?>
+<?php include "resources/footer.php" ?>
 
 </body>
 </html>
