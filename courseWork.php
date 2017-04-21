@@ -16,8 +16,7 @@ session_start();
 <?php include "resources/nav.php";
 if (isset($_GET['t'])) {
     echo "<br><br><br>";
-    echo $_SESSION['user'];
-    $title = $_GET['t'];
+        $title = $_GET['t'];
     if (isset($_SESSION['failed'])) {
         echo "<font color='red'>" . $_SESSION['failed'] . "</font>";
         unset($_SESSION['failed']);
@@ -27,7 +26,7 @@ if (isset($_GET['t'])) {
 }
 ?>
 <div class="row">
-    <!--    <span class="glyphicon glyphicon-user col-md-4 col-md-offset-5" aria-hidden="true" ></span>!-->
+    <br><br>    <!--    <span class="glyphicon glyphicon-user col-md-4 col-md-offset-5" aria-hidden="true" ></span>!-->
     <div class="col-md-6 col-md-offset-3">
         <h3 align="center">Peer Assessment & Feedback</h3>
 

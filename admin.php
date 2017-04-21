@@ -13,10 +13,9 @@ session_start();
 </head>
 <body class="container-fluid">
 <?php include "resources/nav.php" ?>
+<br><br><br><br><br>
 <div class="row">
-    <span class="glyphicon glyphicon-pencil col--4 col-sm-offset-5" aria-hidden="true"></span>
     <div class="col-sm-6 col-sm-offset-3">
-        <h3 align="center">Administrator</h3>
 
         <?php
 
@@ -63,6 +62,7 @@ session_start();
                 <input type="submit" class="col-sm-4 btn btn-primary" value="Upload"/>
             </div>
     </div>
+</div>
 <?php include "resources/footer.php" ?>
 </body>
 </html>

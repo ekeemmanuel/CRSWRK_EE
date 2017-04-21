@@ -14,7 +14,7 @@ session_start();
 <body class="container-fluid">
 <?php include "resources/nav.php" ?>
 <div class="row">
-    <br><br>
+    <br><br><br><br>
     <div class="col-sm-6 col-sm-offset-3">
         <h3 align="center">Delete Coursewor</h3>
         <legend>Coursework Setup</legend>

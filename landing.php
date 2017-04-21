@@ -18,7 +18,7 @@ $sid = $_SESSION['user'];
 <?php include "resources/nav.php" ?>
 
 <?php
-echo "<br><br><br>";
+echo "<br><br><br><br><br>";
 echo "<h4>" . "Hello  " . "{$_SESSION['firstName']}" . "<h4>";
 echo "Access Level: " . $_SESSION['role']
 ?>

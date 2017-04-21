@@ -14,7 +14,7 @@ session_start();
 <body class="container-fluid">
 <?php include "resources/nav.php";?>
 <div class="row">
-    <span class="glyphicon glyphicon-pencil col-md-4 col-md-offset-5" aria-hidden="true"></span>
+<br><br><br>
     <div class="col-md-6 col-md-offset-3">
         <h3 align="center">Submitted Feedbacks</h3>
 

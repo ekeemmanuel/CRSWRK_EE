@@ -14,8 +14,7 @@ include "resources/nav.php"; ?>
 </head>
 <body class="container-fluid">
 <div class="row">
-    <span class="glyphicon glyphicon-pencil col-md-4 col-md-offset-5" aria-hidden="true"></span>
-    <br><br>
+    <br><br><br>
     <div class="col-md-4 col-md-offset-3">
         <h3 align="center">GROUP ALLOCATION</h3>
         <form class="form-horizontal" method="post" action="groupingexe.php">

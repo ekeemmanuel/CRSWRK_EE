@@ -20,6 +20,7 @@ if(isset($_GET['g'])){
 if(isset($_GET['h'])){
     $tag=$_GET['h'];
     echo $tag;
+
     $act = "DELETE FROM `assignment` WHERE `assignment`.`A_id` = $tag";
     echo $act."<br/>";
     if (mysqli_query($servcon, $act)) {
