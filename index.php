@@ -39,7 +39,7 @@ if (!isset($_SESSION['user'])) {
             }
         }
     }
-} else {
+}else{
     header('location:landing.php');
 }
 $servcon->close();
@@ -63,10 +63,10 @@ $servcon->close();
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Home</title>
 </head>
-<body class="container-fluid">
+<body class="freestyle">
+<div class="free">
     <div class="row">
-<!--    <span class="glyphicon glyphicon-education col-md-4 col-md-offset-5" aria-hidden="true"></span>!-->
-        <div class="col-md-4 col-md-offset-2">
+        <div class="col-md-11">
             <h3 id="first" align="center">Login</h3>
 
             <!-- Self-referencing form!-->
@@ -84,5 +84,6 @@ $servcon->close();
              </form>
         </div>
     </div>
+</div>
 </body>
 </html>

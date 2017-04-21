@@ -3,7 +3,7 @@ session_start();
 
 if (!isset($_SESSION['firstName'])) {
     header("Location: index.php");
-} else if (isset($_SESSION['firstName']) != "") {
+} else if (isset($_SESSION['firstName'])!="") {
     header("Location: index.php");
 }
 

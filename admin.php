@@ -15,7 +15,7 @@ session_start();
 <?php include "resources/nav.php" ?>
 <div class="row">
     <span class="glyphicon glyphicon-pencil col--4 col-sm-offset-5" aria-hidden="true"></span>
-    <div class="col-sm-4 col-sm-offset-3">
+    <div class="col-sm-6 col-sm-offset-3">
         <h3 align="center">Administrator</h3>
 
         <?php
@@ -62,6 +62,7 @@ session_start();
                 <span class="glyphicon glyphicon-cloud-upload col-sm-1 col-sm-offset-7" aria-hidden="true"></span>
                 <input type="submit" class="col-sm-4 btn btn-primary" value="Upload"/>
             </div>
+            <footer><a href="crsremove.php" style="color: red">Delete</a> uploaded coursework</footer>
     </div>
 </body>
 </html>

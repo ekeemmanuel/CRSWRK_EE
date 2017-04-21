@@ -28,8 +28,7 @@ if (isset($_GET['t'])) {
 ?>
 <div class="row">
     <!--    <span class="glyphicon glyphicon-user col-md-4 col-md-offset-5" aria-hidden="true" ></span>!-->
-    <div class="col-md-4 col-md-offset-2">
-        <br>
+    <div class="col-md-6 col-md-offset-3">
         <h3 align="center">Peer Assessment & Feedback</h3>
 
         <form class="form-horizontal">
@@ -52,8 +51,7 @@ if (isset($_GET['t'])) {
                                class="col-md-8 col-form-label">Description: <?php echo $res1['description'] ?></label>
                     </div>
                     <div class="form-group row">
-                        <label for="subm" class="col-md-8 col-form-label">Submission
-                            Deadline: <?php echo $res1['submissionDate'] ?></label>
+                        <label for="subm" class="col-md-8 col-form-label">Submission Deadline: <?php echo $res1['submissionDate'] ?></label>
                     </div>
             </fieldset>
         </form>

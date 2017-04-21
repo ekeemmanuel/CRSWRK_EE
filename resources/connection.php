@@ -32,5 +32,5 @@ if(!$servcon){
     exit;
 
 }
-else{echo "Connection Successful";}
+else{echo "eesquare peer review app";}
 ?>

@@ -15,7 +15,7 @@ session_start();
 <?php include "resources/nav.php";?>
 <div class="row">
     <span class="glyphicon glyphicon-pencil col-md-4 col-md-offset-5" aria-hidden="true"></span>
-    <div class="col-md-4 col-md-offset-3">
+    <div class="col-md-6 col-md-offset-3">
         <h3 align="center">Submitted Feedbacks</h3>
 
         <?php if (isset($_GET['c'])){ $student=$_GET['c'];
@@ -42,15 +42,15 @@ session_start();
         echo '</tbody></table>
         
     </div>
-    <div class="col-md-4 col-md-offset-3">
+    <div class="col-md-6 col-md-offset-3">
         <form class="form-horizontal">
             <fieldset><legend>'; echo $_GET['c'];}?>
         </legend>
         <div class="form-group">
                         <label for="feedback">Feedback Report:</label>
-                        <textarea class="form-control" rows="5">
+                        <textarea class="form-control" rows="8" disabled>
                          <?php
-                         if (isset($_GET['s'])){$need=$_GET['s'];echo "$need";
+                         if (isset($_GET['s'])){$need=$_GET['s'];
                              $rpt = "SELECT texta FROM uploads WHERE id='$need'";
                              $repo=mysqli_query($servcon, $rpt);
                              $repor = mysqli_fetch_array($repo);
