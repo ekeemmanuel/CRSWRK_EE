@@ -41,7 +41,7 @@ function get_users($userid)
 {
     global $connection;
     $query="SELECT * FROM users";
- //   if($userid != 0)
+   if(strlen($userid) > 0)
     {
         $query .= ' WHERE userID="' . $userid . '" LIMIT 1';
     }
@@ -53,9 +53,9 @@ function get_users($userid)
         $response[]=$row;
     }
 
-    //header('Content-Type: application/json');
-    echo $query." WE ARE BAL AS HERE";
-    //echo json_encode($response);
+    header('Content-Type: application/json');
+
+    echo json_encode($response);
 }
 
 // Close database connection
