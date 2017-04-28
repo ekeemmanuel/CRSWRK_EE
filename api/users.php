@@ -40,7 +40,7 @@ switch($request_method)
 function get_users($userid)
 {
     global $connection;
-    $query="SELECT email FROM users";
+    $query="SELECT * FROM users";
    if(strlen($userid) > 0)
     {
         $query .= ' WHERE userID="' . $userid . '" LIMIT 1';
