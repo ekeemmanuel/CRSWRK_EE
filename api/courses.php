@@ -10,7 +10,7 @@ switch($request_method)
         // Retrieve courses
         if(!empty($_GET["$courseCode"]))
         {
-            $$courseCode=($_GET["$courseCode"]);
+            $courseCode=($_GET["$courseCode"]);
             get_courses($courseCode);
         }
         else
