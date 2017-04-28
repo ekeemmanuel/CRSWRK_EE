@@ -70,6 +70,7 @@ function get_users($user_id)
     {
         $query .= ' WHERE userID="' . $user_id . '" LIMIT 1';
     }
+    echo $query." WE ARE HERE";
     $response=array();
     $result=mysqli_query($connection, $query);
     while($row=mysqli_fetch_array($result))
