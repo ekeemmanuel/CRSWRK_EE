@@ -8,10 +8,10 @@ switch($request_method)
 {
     case 'GET':
         // Retrieve courses
-        if(!empty($_GET["$courseCode"]))
+        if(!empty($_GET["$coursecode"]))
         {
-            $courseCode=($_GET["$courseCode"]);
-            get_courses($courseCode);
+            $coursecode=($_GET["$coursecode"]);
+            get_courses($coursecode);
         }
         else
         {
@@ -36,13 +36,13 @@ switch($request_method)
         break;
 }
 
-function get_courses($courseCode)
+function get_courses($coursecode)
 {
     global $connection;
     $query="SELECT * FROM courses";
-    if(strlen($courseCode) > 0)
+    if(strlen($coursecode) > 0)
     {
-        $query .= ' WHERE courseCode="' . $courseCode . '" LIMIT 1';
+        $query .= ' WHERE coursecode="' . $coursecode . '" LIMIT 1';
     }
 
     $response=array();
