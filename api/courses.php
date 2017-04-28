@@ -8,9 +8,9 @@ switch($request_method)
 {
     case 'GET':
         // Retrieve courses
-        if(!empty($_GET["$coursecode"]))
+        if(!empty($_GET["coursecode"]))
         {
-            $coursecode=($_GET["$coursecode"]);
+            $coursecode=($_GET["coursecode"]);
             get_courses($coursecode);
         }
         else
@@ -19,15 +19,15 @@ switch($request_method)
         }
         break;
     case 'POST':
-        //Disable Insert user
+        //Disable Insert course
         header("HTTP/1.0 405 Method Not Allowed");
         break;
     case 'PUT':
-        //Disable Update user
+        //Disable Update course
         header("HTTP/1.0 405 Method Not Allowed");
         break;
     case 'DELETE':
-        //Disable Delete user
+        //Disable Delete course
         header("HTTP/1.0 405 Method Not Allowed");
         break;
     default:
