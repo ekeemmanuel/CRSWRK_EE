@@ -39,10 +39,10 @@ switch($request_method)
 function get_users($userid)
 {
     global $connection;
-    $query="SELECT * FROM users";
+    $query="SELECT * FROM users WHERE userID like '%ST%' ";
    if(strlen($userid) > 0)
     {
-        $query .= ' WHERE userID="' . $userid . '" LIMIT 1';
+        $query .= ' and userID="' . $userid . '" LIMIT 1';
     }
 
     $response=array();
