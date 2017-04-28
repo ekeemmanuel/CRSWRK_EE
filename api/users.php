@@ -67,7 +67,7 @@ function get_users($user_id)
     global $connection;
     $query="SELECT * FROM users";
     if($user_id)
-    echo $user_id;
+    echo $user_id." WHEREE WE ARE";
     {
         $query .= ' WHERE userID="' . $user_id . '" LIMIT 1';
     }
