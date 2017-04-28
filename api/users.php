@@ -7,10 +7,10 @@ switch($request_method)
 {
     case 'GET':
         // Retrive users
-        if(!empty($_GET["user_id"]))
+        if(!empty($_GET["userid"]))
         {
-            $user_id=($_GET["user_id"]);
-            get_users($user_id);
+            $userid=($_GET["userid"]);
+            get_users($userid);
         }
         else
         {
@@ -23,13 +23,13 @@ switch($request_method)
         break;
     case 'PUT':
         // Update user
-        $user_id=intval($_GET["user_id"]);
-        update_user($user_id);
+        $userid=intval($_GET["userid"]);
+        update_user($userid);
         break;
     case 'DELETE':
         // Delete user
-        $user_id=intval($_GET["user_id"]);
-        delete_user($user_id);
+        $userid=intval($_GET["userid"]);
+        delete_user($userid);
         break;
     default:
         // Invalid Request Method
@@ -37,38 +37,13 @@ switch($request_method)
         break;
 }
 
-function insert_user()
-{
-    global $connection;
-    $user_name=$_POST["user_name"];
-    $price=$_POST["price"];
-    $quantity=$_POST["quantity"];
-    $seller=$_POST["seller"];
-    $query="INSERT INTO users SET user_name='{$user_name}', price={$price}, quantity={$quantity}, seller='{$seller}'";
-    if(mysqli_query($connection, $query))
-    {
-        $response=array(
-            'status' => 1,
-            'status_message' =>'user Added Successfully.'
-        );
-    }
-    else
-    {
-        $response=array(
-            'status' => 0,
-            'status_message' =>'user Addition Failed.'
-        );
-    }
-    header('Content-Type: application/json');
-    echo json_encode($response);
-}
-function get_users($user_id)
+function get_users($userid)
 {
     global $connection;
     $query="SELECT * FROM users";
- //   if($user_id != 0)
+ //   if($userid != 0)
     {
-        $query .= ' WHERE userID="' . $user_id . '" LIMIT 1';
+        $query .= ' WHERE userID="' . $userid . '" LIMIT 1';
     }
 
     $response=array();
@@ -81,53 +56,6 @@ function get_users($user_id)
     //header('Content-Type: application/json');
     echo $query." WE ARE BAL AS HERE";
     //echo json_encode($response);
-}
-function delete_user($user_id)
-{
-    global $connection;
-    $query="DELETE FROM users WHERE id=".$user_id;
-    if(mysqli_query($connection, $query))
-    {
-        $response=array(
-            'status' => 1,
-            'status_message' =>'user Deleted Successfully.'
-        );
-    }
-    else
-    {
-        $response=array(
-            'status' => 0,
-            'status_message' =>'user Deletion Failed.'
-        );
-    }
-    header('Content-Type: application/json');
-    echo json_encode($response);
-}
-function update_user($user_id)
-{
-    global $connection;
-    parse_str(file_get_contents("php://input"),$post_vars);
-    $user_name=$post_vars["user_name"];
-    $price=$post_vars["price"];
-    $quantity=$post_vars["quantity"];
-    $seller=$post_vars["seller"];
-    $query="UPDATE users SET user_name='{$user_name}', price={$price}, quantity={$quantity}, seller='{$seller}' WHERE id=".$user_id;
-    if(mysqli_query($connection, $query))
-    {
-        $response=array(
-            'status' => 1,
-            'status_message' =>'user Updated Successfully.'
-        );
-    }
-    else
-    {
-        $response=array(
-            'status' => 0,
-            'status_message' =>'user Updation Failed.'
-        );
-    }
-    header('Content-Type: application/json');
-    echo json_encode($response);
 }
 
 // Close database connection
