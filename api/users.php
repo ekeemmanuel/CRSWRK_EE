@@ -66,8 +66,8 @@ function get_users($user_id)
 {
     global $connection;
     $query="SELECT * FROM users";
-    if($user_id)
-    echo $user_id." WHEREE WE ARE";
+    if(strlen($user_id) >0)
+
     {
         $query .= ' WHERE userID="' . $user_id . '" LIMIT 1';
     }
