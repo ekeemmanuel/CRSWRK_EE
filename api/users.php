@@ -2,6 +2,7 @@
 // Connect to database
 include("connection.php");
 
+//capture parsed information
 $request_method=$_SERVER["REQUEST_METHOD"];
 switch($request_method)
 {
@@ -18,15 +19,15 @@ switch($request_method)
         }
         break;
     case 'POST':
-        // Insert user
+        //Disable Insert user
         header("HTTP/1.0 405 Method Not Allowed");
         break;
     case 'PUT':
-        // Update user
+        //Disable Update user
         header("HTTP/1.0 405 Method Not Allowed");
         break;
     case 'DELETE':
-        // Delete user
+        //Disable Delete user
         header("HTTP/1.0 405 Method Not Allowed");
         break;
     default:
