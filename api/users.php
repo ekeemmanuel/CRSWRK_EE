@@ -79,7 +79,7 @@ function get_users($user_id)
     }
 
     //header('Content-Type: application/json');
-    echo $query." WE ARE HERE";
+    echo $query." WE ARE BAL AS HERE";
     //echo json_encode($response);
 }
 function delete_user($user_id)
