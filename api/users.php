@@ -6,7 +6,7 @@ $request_method=$_SERVER["REQUEST_METHOD"];
 switch($request_method)
 {
     case 'GET':
-        // Retrive users
+        // Retrieve users
         if(!empty($_GET["userid"]))
         {
             $userid=($_GET["userid"]);
@@ -19,17 +19,15 @@ switch($request_method)
         break;
     case 'POST':
         // Insert user
-        insert_user();
+        header("HTTP/1.0 405 Method Not Allowed");
         break;
     case 'PUT':
         // Update user
-        $userid=intval($_GET["userid"]);
-        update_user($userid);
+        header("HTTP/1.0 405 Method Not Allowed");
         break;
     case 'DELETE':
         // Delete user
-        $userid=intval($_GET["userid"]);
-        delete_user($userid);
+        header("HTTP/1.0 405 Method Not Allowed");
         break;
     default:
         // Invalid Request Method
