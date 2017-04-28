@@ -67,8 +67,9 @@ function get_users($user_id)
     global $connection;
     $query="SELECT * FROM users";
     if($user_id)
+    echo $user_id;
     {
-        $query .= ' WHERE userID="ST000002" LIMIT 1';
+        $query .= ' WHERE userID="' . $user_id . '" LIMIT 1';
     }
     $response=array();
     $result=mysqli_query($connection, $query);
