@@ -47,7 +47,7 @@ function get_courses($coursecode)
 
     $response=array();
     $result=mysqli_query($connection, $query);
-    while($row=mysqli_fetch_array($result))
+    while($row=mysqli_fetch_assoc($result))
     {
         $response[]=$row;
     }
