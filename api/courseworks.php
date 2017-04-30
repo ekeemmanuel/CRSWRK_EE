@@ -8,10 +8,10 @@ switch($request_method)
 {
     case 'GET':
         // Retrieve assignments
-        if(!empty($_GET["lastname"]))
+        if(!empty($_GET["coursecode"]))
         {
-            $lastname=($_GET["lastname"]);
-            get_assignments($lastname);
+            $coursecode=($_GET["coursecode"]);
+            get_assignments($coursecode);
         }
         else
         {
