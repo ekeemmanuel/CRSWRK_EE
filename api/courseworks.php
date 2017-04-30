@@ -7,27 +7,27 @@ $request_method=$_SERVER["REQUEST_METHOD"];
 switch($request_method)
 {
     case 'GET':
-        // Retrieve emails
+        // Retrieve assignments
         if(!empty($_GET["lastname"]))
         {
             $lastname=($_GET["lastname"]);
-            get_emails($lastname);
+            get_assignments($lastname);
         }
         else
         {
-            get_emails();
+            get_assignments();
         }
         break;
     case 'POST':
-        //Disable Insert email
+        //Disable Insert assignment
         header("HTTP/1.0 405 Method Not Allowed");
         break;
     case 'PUT':
-        //Disable Update email
+        //Disable Update assignment
         header("HTTP/1.0 405 Method Not Allowed");
         break;
     case 'DELETE':
-        //Disable Delete email
+        //Disable Delete assignment
         header("HTTP/1.0 405 Method Not Allowed");
         break;
     default:
@@ -36,13 +36,13 @@ switch($request_method)
         break;
 }
 
-function get_emails($lastname)
+function get_assignments($coursecode)
 {
     global $connection;
-    $query="SELECT email FROM users";
-    if(strlen($lastname) > 0)
+    $query="SELECT coursecode,title,description FROM assignment";
+    if(strlen($coursecode) > 0)
     {
-        $query .= ' WHERE lastname="' . $lastname . '" LIMIT 1';
+        $query .= ' WHERE coursecode="' . $coursecode . '" LIMIT 1';
     }
 
     $response=array();
