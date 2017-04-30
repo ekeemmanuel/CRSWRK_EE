@@ -8,10 +8,10 @@ switch($request_method)
 {
     case 'GET':
         // Retrieve assignments
-        if(!empty($_GET["coursecode"]))
+        if(!empty($_GET["a_id"]))
         {
-            $coursecode=($_GET["coursecode"]);
-            get_assignments($coursecode);
+            $a_id=($_GET["a_id"]);
+            get_assignments($a_id);
         }
         else
         {
@@ -36,13 +36,13 @@ switch($request_method)
         break;
 }
 
-function get_assignments($coursecode)
+function get_assignments($a_id)
 {
     global $connection;
-    $query="SELECT coursecode,title,description FROM assignment";
-    if(strlen($coursecode) > 0)
+    $query="SELECT a_id,coursecode,title,description FROM assignment";
+    if(strlen($a_id) > 0)
     {
-        $query .= ' WHERE coursecode="' . $coursecode . '" LIMIT 1';
+        $query .= ' WHERE a_id="' . $a_id . '" LIMIT 1';
     }
 
     $response=array();
