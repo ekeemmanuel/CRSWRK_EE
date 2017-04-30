@@ -39,7 +39,7 @@ switch($request_method)
 function get_assignments($a_id)
 {
     global $connection;
-    $query="SELECT a_id,coursecode,title,description FROM assignment";
+    $query="SELECT a_id,coursecode,title,description,submissiondate FROM assignment";
     if(strlen($a_id) > 0)
     {
         $query .= ' WHERE a_id="' . $a_id . '" LIMIT 1';
