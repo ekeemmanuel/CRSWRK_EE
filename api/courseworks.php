@@ -52,8 +52,8 @@ function get_assignments($a_id)
         $response[]=$row;
     }
 
-    if ($response=="") {
-        $response = "error - course does not exist";
+    if ($response==null) {
+        $response= "error - course does not exist";
     }
 
     header('Content-Type: application/json');
