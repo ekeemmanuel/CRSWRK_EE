@@ -52,6 +52,10 @@ function get_users($userid)
         $response[]=$row;
     }
 
+    if ($response==null) {
+        $response[]= "error - User does not exist!";
+    }
+
     header('Content-Type: application/json');
 
     echo json_encode($response);

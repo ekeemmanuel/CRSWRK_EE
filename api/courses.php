@@ -52,6 +52,10 @@ function get_courses($coursecode)
         $response[]=$row;
     }
 
+    if ($response==null) {
+        $response[]= "error - Course does not exist!";
+    }
+
     header('Content-Type: application/json');
 
     echo json_encode($response);
