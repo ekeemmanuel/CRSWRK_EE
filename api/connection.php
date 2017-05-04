@@ -32,5 +32,4 @@ if(!$servcon){
     echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
     exit;
 
-}else{echo "<header style='color: cyan; font-size: 30px; font-style: italic; position: fixed'>eesquare peer review app</header>";}
-?>
+}
