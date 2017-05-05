@@ -65,7 +65,7 @@ function get_users($userid)
 function delete_user($userid)
 {
     global $connection;
-    $query="DELETE FROM users WHERE userID=".$userid;
+    $query="DELETE FROM users WHERE userID=".'$userid';
     if(mysqli_query($connection, $query))
     {
         $response=array(
