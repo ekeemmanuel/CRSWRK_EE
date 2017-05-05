@@ -27,8 +27,9 @@ switch($request_method)
         header("HTTP/1.0 405 Method Not Allowed");
         break;
     case 'DELETE':
-        //Disable Delete user
-        header("HTTP/1.0 405 Method Not Allowed");
+        // Delete user
+        $userid=($_GET["userid"]);
+        delete_user(userid);
         break;
     default:
         // Invalid Request Method
@@ -58,6 +59,28 @@ function get_users($userid)
 
     header('Content-Type: application/json');
 
+    echo json_encode($response);
+}
+
+function delete_user($userid)
+{
+    global $connection;
+    $query="DELETE FROM users WHERE userID=".$userid;
+    if(mysqli_query($connection, $query))
+    {
+        $response=array(
+            'status' => 1,
+            'status_message' =>'User Deleted Successfully.'
+        );
+    }
+    else
+    {
+        $response=array(
+            'status' => 0,
+            'status_message' =>'User Deletion Failed.'
+        );
+    }
+    header('Content-Type: application/json');
     echo json_encode($response);
 }
 
