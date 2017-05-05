@@ -19,8 +19,8 @@ switch($request_method)
         }
         break;
     case 'DELETE':
-        // Delete Product
-        $userid=intval($_GET["$userid"]);
+        // Delete User
+        $userid=($_GET["$userid"]);
         delete_users($userid);
         break;
     default:
