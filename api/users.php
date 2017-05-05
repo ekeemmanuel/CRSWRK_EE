@@ -18,18 +18,10 @@ switch($request_method)
             get_users();
         }
         break;
-    case 'POST':
-        //Disable Insert user
-        header("HTTP/1.0 405 Method Not Allowed");
-        break;
-    case 'PUT':
-        //Disable Update user
-        header("HTTP/1.0 405 Method Not Allowed");
-        break;
     case 'DELETE':
-        // Delete user
-        $userid=($_GET["userid"]);
-        delete_user($userid);
+        // Delete Product
+        $userid=intval($_GET["$userid"]);
+        delete_users($userid);
         break;
     default:
         // Invalid Request Method
@@ -62,22 +54,22 @@ function get_users($userid)
     echo json_encode($response);
 }
 
-function delete_user($userid)
+function delete_users($userid)
 {
     global $connection;
-    $query="DELETE FROM users WHERE userID=".'$userid';
+    $query="DELETE FROM users WHERE userID=".$userid;
     if(mysqli_query($connection, $query))
     {
         $response=array(
             'status' => 1,
-            'status_message' =>'User Deleted Successfully.'
+            'status_message' =>'Product Deleted Successfully.'
         );
     }
     else
     {
         $response=array(
             'status' => 0,
-            'status_message' =>'User Deletion Failed.'
+            'status_message' =>'Product Deletion Failed.'
         );
     }
     header('Content-Type: application/json');
