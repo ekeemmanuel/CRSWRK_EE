@@ -29,7 +29,7 @@ switch($request_method)
     case 'DELETE':
         // Delete user
         $userid=($_GET["userid"]);
-        delete_user(userid);
+        delete_user($userid);
         break;
     default:
         // Invalid Request Method
