@@ -6,7 +6,7 @@ if (isset($_GET['g'])){
 }
 if (!isset($_SESSION['user'])) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {            //Checking login credentials
-        $username = strip_tags($_POST['username']);         //Security check
+        $username = strip_tags($_POST['username']);         //Checking Security
         $password = strip_tags($_POST['password']);
 
         $username = $servcon->real_escape_string($username);

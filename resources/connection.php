@@ -16,7 +16,7 @@ foreach ($_SERVER as $key => $value) {
     $connectstr_dbpassword = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
 }
 
-//If we are not on Azure
+//Local server
 if (!$connectstr_dbhost) {
     $connectstr_dbhost = 'localhost';
     $connectstr_dbname = 'peergroup';
