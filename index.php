@@ -1,5 +1,6 @@
 <?php
 include("resources/connection.php");
+echo "<br><br>";
 if (isset($_GET['g'])){
     echo "New record created successfully";
 }
